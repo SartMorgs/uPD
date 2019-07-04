@@ -1,0 +1,216 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity CAMINHO_DADOS is
+    Generic (
+					p_DATA_WIDTH			: INTEGER := 16
+	 );
+    Port ( 
+				i_CLK			: in  STD_LOGIC;
+				i_RST			: in  STD_LOGIC;
+				i_DATA			: in  STD_LOGIC_VECTOR(10 DOWNTO 0);	  
+				i_SEL_ULA		: in  STD_LOGIC_VECTOR(2 DOWNTO 0);	
+				i_SEL_IMED		: in  STD_LOGIC_VECTOR(1 DOWNTO 0);	
+			    i_WR_BCO		: in  STD_LOGIC;
+				i_WR_RAM    	: in  STD_LOGIC;
+				i_WR_IO       	: in  STD_LOGIC;
+				i_RD_IO       	: in  STD_LOGIC;
+				i_DATA_IO		: in  STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);
+				o_DATA_ULA		: out STD_LOGIC;
+				o_DATA_IO		: out STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);
+				o_ADDR_IO      	: out STD_LOGIC_VECTOR((p_DATA_WIDTH-8) DOWNTO 0);
+				i_RET			: in  STD_LOGIC;
+				i_DOUT_LIFO 	: in  STD_LOGIC_VECTOR(63 DOWNTO 0);
+				o_DIN_LIFO  	: out STD_LOGIC_VECTOR(63 DOWNTO 0)					
+	 );
+end CAMINHO_DADOS;
+
+architecture Behavioral of CAMINHO_DADOS is
+-----------------------------------------------------------------
+	COMPONENT BANCO_REGISTRADOR is
+	    Generic (
+					p_DATA_WIDTH    : INTEGER := 16
+	    );
+		 Port ( 
+					i_CLK   		: in  STD_LOGIC;
+					i_RST   		: in  STD_LOGIC;
+					
+					i_ADD_S1		: in  STD_LOGIC_VECTOR(1 DOWNTO 0);	  
+					i_ADD_S2		: in  STD_LOGIC_VECTOR(1 DOWNTO 0);	
+
+					i_RET			: in  STD_LOGIC;
+					i_DOUT_LIFO 	: in  STD_LOGIC_VECTOR(63 DOWNTO 0);
+					o_DIN_LIFO  	: out STD_LOGIC_VECTOR(63 DOWNTO 0);		
+				
+					i_WR_IO       	: in  STD_LOGIC;
+					i_WR_RAM 		: in  STD_LOGIC;
+					i_WR			: in  STD_LOGIC;
+					i_DATA			: in  STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);	
+					i_ADD_DST 		: in  STD_LOGIC_VECTOR(1 DOWNTO 0);
+					o_RS1 			: out STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);	
+					o_RS2 			: out STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0)
+		 );
+	end COMPONENT;
+
+	component ULA is
+	 Generic(
+				p_DATA_WIDTH    : INTEGER := 16
+	 );
+    Port ( 
+				i_REG_S1		: in  STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);	  
+				i_REG_S2		: in  STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);	
+			     i_SEL_ULA  	: in  STD_LOGIC_VECTOR(2 DOWNTO 0);	
+				o_DATA_ULA		: out  STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0)
+	 );
+	end component;
+
+	COMPONENT REGISTRADOR is
+		 Generic (
+					p_DATA_WIDTH	: INTEGER := 16
+		 );
+		 Port ( 
+					i_CLK   	: in  STD_LOGIC;
+					i_RST   	: in  STD_LOGIC;
+					i_DATA		: in  STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);	  
+					o_DATA		: out STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);	
+					i_WR   		: in  STD_LOGIC	
+		 );
+	end COMPONENT;	
+
+	COMPONENT MEMORIA is
+		 Generic(
+					 p_DATA_WIDTH   : INTEGER := 16;        -- Número de bits dos dados. 
+					 p_ADD_WIDTH    : INTEGER := 6         -- Número de bits dos endereços. 
+		 );
+		 Port ( 
+				  i_CLK 	: in  STD_LOGIC;
+				  i_RST  	: in  STD_LOGIC;
+				  i_WR 		: in  STD_LOGIC;
+				  i_ADDR  	: in  STD_LOGIC_VECTOR ((p_ADD_WIDTH-1) downto 0);
+				  i_DATA  	: in  STD_LOGIC_VECTOR ((p_DATA_WIDTH-1) downto 0);
+				  o_DATA  	: out STD_LOGIC_VECTOR ((p_DATA_WIDTH-1) downto 0)
+		 );
+	end COMPONENT;
+
+	
+	-- =============================================================
+	-- GERAÇÃO DE SINAIS
+	-- =============================================================
+	
+-----------------------------------------------------------------	
+begin
+	
+
+	MUX : process(i_SEL_iMED, i_DATA(5 downto 0), w_DATA_IO, w_DATA_ULA, w_DATA_RAM)
+	begin
+		-- =============================================================
+		-- ROTINA DO MUX
+		-- =============================================================
+	end process MUX;
+	
+	
+	U01 : BANCO_REGISTRADOR 
+	    Generic Map (
+					p_DATA_WIDTH    => p_DATA_WIDTH
+	    )
+		 Port Map ( 
+						i_CLK   		=>	,
+						i_RST   		=>  ,
+						i_ADD_S1		=>	,
+						i_ADD_S2		=>	,				
+						i_RET			=>	,
+						i_DOUT_LIFO 	=>	,
+						o_DIN_LIFO  	=>	,								
+						i_WR_IO			=>	,
+						i_WR_RAM 		=>	,
+						i_WR  			=>	,
+						i_DATA			=>	,
+						i_ADD_DST 		=>	,
+						o_RS1 			=>	,
+						o_RS2 			=> 
+		 );
+	
+	U02 : ULA 
+	 Generic Map (
+					p_DATA_WIDTH    => p_DATA_WIDTH
+	 )
+      Port Map( 
+					i_REG_S1		=>	,  
+					i_REG_S2		=>	,
+					i_SEL_ULA   	=>	,
+					o_DATA_ULA	    =>	
+	 );
+
+	--
+	-- Usado nas instruções de jump (JE e JZ).
+	--
+	o_DATA_ULA <= ;
+	
+	
+	
+	--
+	-- Registrado de ENDERECO de (IO).
+	--
+	U03A:  REGISTRADOR 
+	  Generic Map (
+					p_DATA_WIDTH => 9
+	  )
+      Port map( 
+					i_CLK   	=>	,
+					i_RST   	=>	,
+					i_DATA		=>	,
+					o_DATA		=>	,
+					i_WR   		=>	
+	 );
+	
+	 
+	 
+	--
+	-- Registrado de saída de dados (IO).
+	--
+	U03:  REGISTRADOR 
+	 Generic Map (
+					p_DATA_WIDTH => p_DATA_WIDTH
+	 )	
+     Port map( 
+					i_CLK   	=>	,
+					i_RST   	=>	,
+					i_DATA		=>	,
+					o_DATA		=>	,
+					i_WR   		=>	
+	 );
+
+	--
+	-- Registrado de entrada de dados (IO).
+	--
+	U04:  REGISTRADOR 
+	Generic Map (
+					p_DATA_WIDTH => p_DATA_WIDTH
+	)	
+	Port map( 
+					i_CLK   	=>	,
+					i_RST   	=>	,
+					i_DATA		=>	,
+					o_DATA		=>	,
+					i_WR   		=>	
+	 );
+	 
+
+	 U05 : MEMORIA 
+		Generic Map(
+						 p_DATA_WIDTH   => p_DATA_WIDTH,
+						 p_ADD_WIDTH    => 9        
+		)
+		Port Map( 
+					  i_CLK 	=>	,
+					  i_RST   	=>	,
+					  i_WR 		=>	,
+					  i_ADDR 	=>	,
+					  i_DATA 	=>	,
+					  o_DATA 	=>	
+	 );
+	 
+end behavioral;

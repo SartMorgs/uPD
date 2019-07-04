@@ -1,0 +1,115 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity CONTROLE is
+    Generic (
+				p_DATA_WIDTH	: INTEGER := 16
+    );	
+    Port ( 
+				i_CLK			: in  STD_LOGIC;
+				i_RST			: in  STD_LOGIC;
+				i_DATA   		: in  STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);	  
+				i_DATA_ULA		: in  STD_LOGIC;
+				o_SEL_ULA		: out STD_LOGIC_VECTOR(2 DOWNTO 0);	
+				o_SEL_IMED		: out STD_LOGIC_VECTOR(1 DOWNTO 0);	
+				o_WR_BCO      	: out STD_LOGIC;
+				o_WR_RAM      	: out STD_LOGIC;
+				o_WR_IO       	: out STD_LOGIC;
+				o_RD_IO			: out STD_LOGIC;
+				o_SEL_JMP		: out STD_LOGIC_VECTOR(1 DOWNTO 0);
+				o_PUSH  		: out STD_LOGIC;
+				o_POP   		: out STD_LOGIC;
+				o_RET			: out STD_LOGIC;
+				o_EN_ROM		: out STD_LOGIC;
+				o_ADD_ROM		: out STD_LOGIC_VECTOR((p_DATA_WIDTH-8) DOWNTO 0);
+				i_NEXT_PC   	: in  STD_LOGIC_VECTOR((p_DATA_WIDTH-8) DOWNTO 0);
+				o_INT_ADD		: out STD_LOGIC_VECTOR(1 DOWNTO 0);
+				i_INT0		    : in  STD_LOGIC;
+				i_INT1		    : in  STD_LOGIC;
+				i_INT2		    : in  STD_LOGIC
+	 );
+end CONTROLE;
+
+architecture Behavioral of CONTROLE is
+-----------------------------------------------------------------
+
+	type w_State_Type is (st_FETCH, st_DECODE, st_EXECUTE, st_WAIT, st_RET, st_STOP, st_CALL, st_INPUT, 
+	                      st_JMPI, st_JMPZ, st_JMPE, st_CMP, st_CALL_INT); 
+
+	attribute syn_encoding : string;
+	attribute syn_encoding of w_State_Type : type is "safe";
+ 
+	signal w_STATE : w_State_Type;
+	
+	-- =============================================================
+	-- GERAÇÃO DE SINAIS
+	-- =============================================================
+	
+	
+-----------------------------------------------------------------	
+begin
+
+	o_ADD_ROM <= ;
+	
+	
+	U_MACHINE : process(i_CLK, i_RST)      
+		variable v_COMP : integer := 0;
+		
+	begin    																						
+		if (i_RST = '1') then			
+		
+			
+		elsif falling_edge (i_CLK) then														
+			case w_STATE is	
+					when st_WAIT => 
+
+						
+					when st_FETCH =>
+
+
+					when st_DECODE =>
+							
+						
+					when st_EXECUTE =>		
+				
+					
+				    when st_RET => 
+				
+											
+					when st_CALL => 
+
+					
+					when st_CALL_INT =>
+								
+								
+					when st_INPUT =>
+
+					
+					when st_JMPI =>
+
+			
+					when st_JMPZ => 
+
+						
+					when st_CMP => 
+						
+
+					when st_JMPE => 
+						
+						
+					when st_STOP =>
+						
+						
+					when others => 																
+
+																				
+			end case;																				
+
+		end if;																						
+	end process U_MACHINE;																	
+		
+-----------------------------------------------------------------	
+end behavioral;

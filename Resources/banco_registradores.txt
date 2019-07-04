@@ -1,0 +1,117 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity BANCO_REGISTRADOR is
+    Generic (
+					p_DATA_WIDTH		: INTEGER := 16
+	 );
+    Port ( 
+				i_CLK   		: in  STD_LOGIC;
+				i_RST   		: in  STD_LOGIC;
+				
+				i_ADD_S1		: in  STD_LOGIC_VECTOR(1 DOWNTO 0);	  
+				i_ADD_S2		: in  STD_LOGIC_VECTOR(1 DOWNTO 0);	
+
+				i_RET			: in  STD_LOGIC;
+				i_DOUT_LIFO 	: in  STD_LOGIC_VECTOR(63 DOWNTO 0);
+				o_DIN_LIFO  	: out STD_LOGIC_VECTOR(63 DOWNTO 0);		
+				
+				i_WR_IO       	: in  STD_LOGIC;
+				i_WR_RAM 		: in  STD_LOGIC;
+				i_WR  			: in  STD_LOGIC;
+				i_DATA			: in  STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);	
+			    i_ADD_DST 		: in  STD_LOGIC_VECTOR(1 DOWNTO 0);
+				o_RS1 			: out STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);	
+				o_RS2 			: out STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0)
+	 );
+end BANCO_REGISTRADOR;
+
+architecture Behavioral of BANCO_REGISTRADOR is
+
+	COMPONENT REGISTRADOR is
+		 Generic (
+					p_DATA_WIDTH		: INTEGER := 16
+		 );
+		 Port ( 
+					i_CLK   : in  STD_LOGIC;
+					i_RST   : in  STD_LOGIC;
+					i_DATA	: in  STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);	  
+					o_DATA	: out STD_LOGIC_VECTOR((p_DATA_WIDTH-1) DOWNTO 0);	
+					i_WR   	: in  STD_LOGIC	
+		 );
+	end COMPONENT;	
+	
+	
+	-- =============================================================
+	-- GERAÇÃO DE SINAIS 
+	-- =============================================================
+	
+begin
+	--
+	--- Salvamento e restauracao de registradores.
+	--
+
+	o_DIN_LIFO 	<= ;
+		
+	
+	U00:  REGISTRADOR 
+    Port map( 
+					i_CLK   =>	,
+					i_RST   =>	,
+					i_DATA	=>	,
+					o_DATA	=>	,
+					i_WR   	=> 
+	 );
+
+	 U01:  REGISTRADOR 
+    Port map( 
+					i_CLK   =>	,
+					i_RST   =>	,
+					i_DATA	=>	,
+					o_DATA	=>	,
+					i_WR   	=>	
+	 );
+	 
+	U02:  REGISTRADOR 
+    Port map( 
+					i_CLK   =>	,
+					i_RST   =>	,
+					i_DATA	=>	,
+					o_DATA	=>	,
+					i_WR   	=>	
+	 );
+
+		
+	 U03:  REGISTRADOR 
+    Port map( 
+					i_CLK   =>	,
+					i_RST   =>	,
+					i_DATA	=>	,
+					o_DATA	=>	,
+					i_WR   	=>	
+	 );	 
+
+	 
+	 
+	 MUX_S1 : PROCESS()
+	 BEGIN
+			-- =============================================================
+			-- ROTINA MUX_S1
+			-- =============================================================
+	 END PROCESS MUX_S1;
+
+	 
+	 MUX_S2 : PROCESS()
+	 BEGIN
+			-- =============================================================
+			-- ROTINA MUS_S2
+			-- =============================================================
+	 END PROCESS MUX_S2;
+	 
+  
+	 
+end behavioral;
+	

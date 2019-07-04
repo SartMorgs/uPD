@@ -1,0 +1,132 @@
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\bin\Debug\uPD.exe.config
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\bin\Debug\uPD.exe
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\bin\Debug\uPD.pdb
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\obj\Debug\uPD.csprojResolveAssemblyReference.cache
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\obj\Debug\uPD.ULA.resources
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\obj\Debug\uPD.Properties.Resources.resources
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\obj\Debug\uPD.csproj.GenerateResource.Cache
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\obj\Debug\uPD.exe
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\obj\Debug\uPD.pdb
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\obj\Debug\uPD.RAM.resources
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\obj\Debug\uPD.Banco_de_Registradores.resources
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\obj\Debug\uPD.ReadFile_FileData.resources
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\obj\Debug\uPD.Decode_Execute.resources
+C:\Users\thayn\Documents\Visual Studio 2017\Projects\uPD\uPD\obj\Debug\uPD.Form_uPD.resources
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.Banco_de_Registradores.resources
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.Decode_Execute.resources
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.Form_uPD.resources
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.ReadFile_FileData.resources
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.RAM.resources
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.ULA.resources
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.Properties.Resources.resources
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.csproj.GenerateResource.Cache
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.exe
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.pdb
+C:\Users\thayn\Documents\LISHA\1.0\uPD\bin\Debug\uPD.exe.config
+C:\Users\thayn\Documents\LISHA\1.0\uPD\bin\Debug\uPD.exe
+C:\Users\thayn\Documents\LISHA\1.0\uPD\bin\Debug\uPD.pdb
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.csprojResolveAssemblyReference.cache
+C:\Users\thayn\Documents\LISHA\1.0\uPD\bin\Debug\uPD.exe.manifest
+C:\Users\thayn\Documents\LISHA\1.0\uPD\bin\Debug\uPD.application
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.Componentes_VHDL.resources
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.VHDL.resources
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.exe.manifest
+C:\Users\thayn\Documents\LISHA\1.0\uPD\obj\Debug\uPD.application
+C:\Users\thayn\Source\Repos\uPD\bin\Debug\uPD.exe.config
+C:\Users\thayn\Source\Repos\uPD\bin\Debug\uPD.exe.manifest
+C:\Users\thayn\Source\Repos\uPD\bin\Debug\uPD.application
+C:\Users\thayn\Source\Repos\uPD\bin\Debug\uPD.exe
+C:\Users\thayn\Source\Repos\uPD\bin\Debug\uPD.pdb
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.Banco_de_Registradores.resources
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.Componentes_VHDL.resources
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.Decode_Execute.resources
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.Form_uPD.resources
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.ReadFile_FileData.resources
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.RAM.resources
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.ULA.resources
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.Properties.Resources.resources
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.VHDL.resources
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.csproj.GenerateResource.Cache
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.exe.manifest
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.application
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.exe
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.pdb
+C:\Users\thayn\Source\Repos\uPD\obj\Debug\uPD.csprojResolveAssemblyReference.cache
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\bin\Debug\uPD.exe.config
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\bin\Debug\uPD.exe.manifest
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\bin\Debug\uPD.application
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\bin\Debug\uPD.exe
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\bin\Debug\uPD.pdb
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.csprojAssemblyReference.cache
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.Banco_de_Registradores.resources
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.Componentes_VHDL.resources
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.Decode_Execute.resources
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.Form_uPD.resources
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.ReadFile_FileData.resources
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.RAM.resources
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.ULA.resources
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.Properties.Resources.resources
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.VHDL.resources
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.csproj.GenerateResource.cache
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.csproj.CoreCompileInputs.cache
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.exe.manifest
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.application
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.exe
+C:\Users\thayn\OneDrive\Documentos\LISHA\uPD Project\uPD\obj\Debug\uPD.pdb
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\bin\Debug\uPD.exe.config
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\bin\Debug\uPD.exe.manifest
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\bin\Debug\uPD.application
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\bin\Debug\uPD.exe
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\bin\Debug\uPD.pdb
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.csprojAssemblyReference.cache
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.Banco_de_Registradores.resources
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.Componentes_VHDL.resources
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.Decode_Execute.resources
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.Form_uPD.resources
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.ReadFile_FileData.resources
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.RAM.resources
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.ULA.resources
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.Properties.Resources.resources
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.VHDL.resources
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.csproj.GenerateResource.cache
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.csproj.CoreCompileInputs.cache
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.exe.manifest
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.application
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.exe
+C:\Users\Morgana\Desktop\Projects\uPD - Mato Alto\uPD\obj\Debug\uPD.pdb
+C:\Users\morga\source\repos\uPD\uPD\obj\Debug\uPD.csprojAssemblyReference.cache
+C:\Users\morga\source\repos\uPD\uPD\obj\Debug\uPD.Componentes_VHDL.resources
+C:\Users\morga\source\repos\uPD\uPD\obj\Debug\uPD.Properties.Resources.resources
+C:\Users\morga\source\repos\uPD\uPD\obj\Debug\uPD.csproj.GenerateResource.cache
+C:\Users\morga\source\repos\uPD\uPD\obj\Debug\uPD.csproj.CoreCompileInputs.cache
+C:\Users\morga\source\repos\uPD\uPD\obj\Debug\uPD.exe
+C:\Users\morga\source\repos\uPD\uPD\obj\Debug\uPD.pdb
+C:\Users\morga\source\repos\uPD\uPD\obj\Debug\uPD.Form_uPD.resources
+C:\Users\morga\source\repos\uPD\uPD\bin\Debug\uPD.exe.config
+C:\Users\morga\source\repos\uPD\uPD\bin\Debug\uPD.exe.manifest
+C:\Users\morga\source\repos\uPD\uPD\bin\Debug\uPD.application
+C:\Users\morga\source\repos\uPD\uPD\bin\Debug\uPD.exe
+C:\Users\morga\source\repos\uPD\uPD\bin\Debug\uPD.pdb
+C:\Users\morga\source\repos\uPD\uPD\obj\Debug\uPD.exe.manifest
+C:\Users\morga\source\repos\uPD\uPD\obj\Debug\uPD.application
+C:\Users\morga\source\repos\uPD\uPD\obj\Debug\uPD.Vhdl_File.resources
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\bin\Debug\uPD.exe.config
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\bin\Debug\uPD.exe.manifest
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\bin\Debug\uPD.application
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\bin\Debug\uPD.exe
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\bin\Debug\uPD.pdb
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\obj\Debug\uPD.csprojAssemblyReference.cache
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\obj\Debug\uPD.Componentes_VHDL.resources
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\obj\Debug\uPD.Form_uPD.resources
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\obj\Debug\uPD.Properties.Resources.resources
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\obj\Debug\uPD.Vhdl_File.resources
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\obj\Debug\uPD.csproj.GenerateResource.cache
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\obj\Debug\uPD.csproj.CoreCompileInputs.cache
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\obj\Debug\uPD.exe.manifest
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\obj\Debug\uPD.application
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\obj\Debug\uPD.exe
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\obj\Debug\uPD.pdb
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\bin\Debug\Componentes_VHDL.resx
+C:\Users\Morgana\source\repos\uPD - Mato Alto\uPD\bin\Debug\Componentes_VHDL1.Designer.cs
+C:\Users\morga\source\repos\uPD\uPD\bin\Debug\Componentes_VHDL.resx
+C:\Users\morga\source\repos\uPD\uPD\bin\Debug\Componentes_VHDL1.Designer.cs
