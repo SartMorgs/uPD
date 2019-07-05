@@ -391,7 +391,7 @@ namespace uPD
                         break;
                     case "JI":
                         txt_bin[1][j++] = "00110";
-                        address[1][currentAddress++] = div_text[i] + div_text[i + 1];
+                        address[1][currentAddress++] = div_text[i];
                         countInstMain++;
                         instructionNoOrder[numInstructions++] = "JI" + " " + div_text[i + 1];
                         break;
@@ -409,7 +409,7 @@ namespace uPD
                         break;
                     case "JZ":
                         txt_bin[1][j++] = "01001";
-                        address[1][currentAddress++] = div_text[i] + div_text[i + 1];
+                        address[1][currentAddress++] = div_text[i];
                         countInstMain++;
                         instructionNoOrder[numInstructions++] = "JZ" + " " + div_text[i + 1] + " " + div_text[i + 2];
                         break;
@@ -553,7 +553,7 @@ namespace uPD
                             break;
                         case "JI":
                             txt_bin[8 + i][j++] = "00110";
-                            address[8 + i][currentAddress++] = div_text[k] + div_text[k + 1];
+                            address[8 + i][currentAddress++] = div_text[k];
                             countInstFunct[i]++;
                             instructionNoOrder[numInstructions++] = "JI" + " " + div_text[k + 1];
                             break;
@@ -571,13 +571,13 @@ namespace uPD
                             break;
                         case "JZ":
                             txt_bin[8 + i][j++] = "01001";
-                            address[8 + i][currentAddress++] = div_text[k] + div_text[k + 1];
+                            address[8 + i][currentAddress++] = div_text[k];
                             countInstFunct[i]++;
                             instructionNoOrder[numInstructions++] = "JZ" + " " + div_text[k + 1] + " " + div_text[k + 2];
                             break;
                         case "JE":
                             txt_bin[8 + i][j++] = "01010";
-                            address[8 + i][currentAddress++] = div_text[k] + div_text[k + 1];
+                            address[8 + i][currentAddress++] = div_text[k];
                             countInstFunct[i]++;
                             instructionNoOrder[numInstructions++] = "JE" + " " + div_text[k + 1] + " " + div_text[k + 2];
                             break;
@@ -721,7 +721,7 @@ namespace uPD
                             break;
                         case "JI":
                             txt_bin[1 + i][j++] = "00110";
-                            address[1 + i][currentAddress++] = div_text[k] + div_text[k + 1];
+                            address[1 + i][currentAddress++] = div_text[k];
                             countInstInt[i - 1]++;
                             instructionNoOrder[numInstructions++] = "JI" + " " + div_text[k + 1];
                             break;
@@ -739,13 +739,13 @@ namespace uPD
                             break;
                         case "JZ":
                             txt_bin[1 + i][j++] = "01001";
-                            address[1 + i][currentAddress++] = div_text[k] + div_text[k + 1];
+                            address[1 + i][currentAddress++] = div_text[k];
                             countInstInt[i - 1]++;
                             instructionNoOrder[numInstructions++] = "JZ" + " " + div_text[k + 1] + " " + div_text[k + 2];
                             break;
                         case "JE":
                             txt_bin[1 + i][j++] = "01010";
-                            address[1 + i][currentAddress++] = div_text[k] + div_text[k + 1];
+                            address[1 + i][currentAddress++] = div_text[k];
                             countInstInt[i - 1]++;
                             instructionNoOrder[numInstructions++] = "JE" + " " + div_text[k + 1] + " " + div_text[k + 2];
                             break;

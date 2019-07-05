@@ -1051,8 +1051,8 @@ namespace uPD
 
                 if (string.IsNullOrEmpty(SF.FileName) == false)
                 {
-                    try
-                    {
+                    //try
+                    //{
                         using (SW = new StreamWriter(SF.FileName, false, Encoding.UTF8))
                         {
                             //Escrevendo no arquivo
@@ -1062,8 +1062,8 @@ namespace uPD
                             string newtab = "tab_" + fileName;
 
                             // Após salvar tenta compilar
-                            try
-                            {
+                            //try
+                            //{
                                 // Salvando no Programa
                                 Program.Translate(txt_editar.Text, Path.GetFileName(SF.FileName));
                                 if(Program.error != "")
@@ -1071,16 +1071,17 @@ namespace uPD
                                     MessageBox.Show(Program.error, "Erro", MessageBoxButtons.OK);
                                     return;
                                 }
-                            }
-                            catch
-                            {
-                                txt_Mensagens.Text += Environment.NewLine + "Erro ao compilar código!\n";
 
-                            }
+                            //}
+                            //catch
+                            //{
+                                //txt_Mensagens.Text += Environment.NewLine + "Erro ao compilar código!\n";
+
+                            //}
 
                         }
-                    }
-                    catch { MessageBox.Show("Erro ao criar Arquivo"); }
+                    //}
+                    //catch { MessageBox.Show("Erro ao criar Arquivo"); }
 
                     // Inicializa o Programa
                     Program.StartSim();
@@ -1218,8 +1219,8 @@ namespace uPD
             }
             else
             {
-                try
-                {
+                //try
+                //{
 
                     instructionLine = txt_editar.Text;
                     //Escrevendo no arquivo
@@ -1227,8 +1228,8 @@ namespace uPD
                     string newtab = "tab_" + fileName;
 
                     // Após salvar tenta compilar
-                    try
-                    {
+                    //try
+                    //{
                         // Salvando no Programa
                         Program.Translate(txt_editar.Text, fileName);
                         if (Program.error != "")
@@ -1236,14 +1237,14 @@ namespace uPD
                             MessageBox.Show(Program.error, "Erro", MessageBoxButtons.OK);
                             return;
                         }
-                    }
-                    catch
-                    {
-                        txt_Mensagens.Text += Environment.NewLine + "Erro ao compilar código!\n";
+                    //}
+                    //catch
+                    //{
+                        //txt_Mensagens.Text += Environment.NewLine + "Erro ao compilar código!\n";
 
-                    }
-                }
-                catch { MessageBox.Show("Erro ao criar Arquivo"); }
+                    //}
+                //}
+                //catch { MessageBox.Show("Erro ao criar Arquivo"); }
 
                 // Inicializa o Programa
                 Program.StartSim();
@@ -1378,27 +1379,6 @@ namespace uPD
                 tab_Editar.BackColor = Color.GreenYellow;
                 tab_Executar_Texto.SelectedTab = tabExecutar;
             }
-
-            #region Create new file ROM
-            int lineStop, cnt = 0; ;
-            string dir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);                    // Pega o caminho do diretório do executável
-
-            for (uint i = 0; i < oldRom.Length; i++)
-            {
-                if (oldRom[i].Contains("ROM("))
-                {
-                    while (cnt < 2047)
-                    {
-                        newRom[i + cnt] = "ROM(" + cnt + ") <= \"" + Program.binProgram[cnt] + "\";";
-                        cnt++;
-                    }
-                }
-                else
-                {
-                    newRom[i + cnt] = oldRom[i];
-                }
-            }
-            #endregion Create new file ROM
 
             #region Color Text
             this.CheckKeyword("ADD", Color.Blue, 0);
@@ -1823,7 +1803,14 @@ namespace uPD
         private void interrupçõesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             txt_editar.Name = "interrupcoes";
-            txt_editar.Text = "BEGIN" + Environment.NewLine +
+            txt_editar.Text = ".PROG" + Environment.NewLine +
+            "SETR, INT, 0" + Environment.NewLine +
+            "SETR, INT, 1" + Environment.NewLine +
+            "SETR, INT, 2" + Environment.NewLine +
+            "SETR, INT, 3" + Environment.NewLine +
+            "SETR, INT, 4" + Environment.NewLine +
+            Environment.NewLine +
+            "BEGIN" + Environment.NewLine +
             "LDI, R1, 20;" + Environment.NewLine +
             "STO, R1, 01;" + Environment.NewLine +
             "LDI, R0, 70;" + Environment.NewLine +

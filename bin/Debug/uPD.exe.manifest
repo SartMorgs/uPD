@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="uPD.exe" size="457224">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="uPD.exe" size="456712">
       <assemblyIdentity name="uPD" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OJUpZEWXKTgVr/ES9ww7gp1F51/SKDadSXQwIQadlOk=</dsig:DigestValue>
+        <dsig:DigestValue>ar5TeY/g4dXJq42PyokYuVHfOq+8RRdEiiEt1UGzZgM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
