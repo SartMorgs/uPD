@@ -508,6 +508,7 @@ namespace uPD
                     }
                     else
                     {
+                        currentAddress += 1;
                         enableJmp = false;
                     }
 

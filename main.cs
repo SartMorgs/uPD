@@ -292,6 +292,9 @@ namespace uPD
             tab_Editar.BackColor = Color.White;
             tab_Executar_Texto.SelectedTab = tab_Editar;
 
+            // Desativando edição no texto
+            rchtxt_Editor.Enabled = true;
+
             // Ativando e desativando botões de execução
             bt_execucao.Enabled = false;
             bt_passo_passo_prosseguir.Enabled = false;
@@ -1000,6 +1003,14 @@ namespace uPD
             r0 = r1 = r2 = r3 = 0;
             r0_hex = r1_hex = r2_hex = r3_hex = "0000";
 
+            // Desativa botões de interrupção
+            bt_INT0.Enabled = false;
+            bt_INT1.Enabled = false;
+            bt_INT2.Enabled = false;
+            bt_INT3.Enabled = false;
+            bt_INT4.Enabled = false;
+            bt_INT5.Enabled = false;
+
             // Registradores
             lb_REG0.Text = Program.bco.GetRegister(0).ToString();
             lb_REG1.Text = Program.bco.GetRegister(1).ToString();
@@ -1051,8 +1062,8 @@ namespace uPD
 
                 if (string.IsNullOrEmpty(SF.FileName) == false)
                 {
-                    //try
-                    //{
+                    try
+                    {
                         using (SW = new StreamWriter(SF.FileName, false, Encoding.UTF8))
                         {
                             //Escrevendo no arquivo
@@ -1062,8 +1073,8 @@ namespace uPD
                             string newtab = "tab_" + fileName;
 
                             // Após salvar tenta compilar
-                            //try
-                            //{
+                            try
+                            {
                                 // Salvando no Programa
                                 Program.Translate(txt_editar.Text, Path.GetFileName(SF.FileName));
                                 if(Program.error != "")
@@ -1071,156 +1082,157 @@ namespace uPD
                                     MessageBox.Show(Program.error, "Erro", MessageBoxButtons.OK);
                                     return;
                                 }
+                                // Inicializa o Programa
+                                Program.StartSim();
 
-                            //}
-                            //catch
-                            //{
-                                //txt_Mensagens.Text += Environment.NewLine + "Erro ao compilar código!\n";
+                                #region Start ROM
+                        int y = -1, cont = 0, continst = 0;
+                        string[] functions = Program.translator.GetFunctions();
+                        int[] instFunction = Program.translator.GetAmountInstFunction();
 
-                            //}
+                        dataGrid_Adress.ColumnCount = 4;
+                        dataGrid_Adress.ColumnHeadersVisible = true;
+                        DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
+                        dataGrid_Adress.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
 
-                        }
-                    //}
-                    //catch { MessageBox.Show("Erro ao criar Arquivo"); }
+                        dataGrid_Adress.Columns[0].Name = "Área";
+                        dataGrid_Adress.Columns[1].Name = "Endereço";
+                        dataGrid_Adress.Columns[2].Name = "Binário";
+                        dataGrid_Adress.Columns[3].Name = "Assembly";
 
-                    // Inicializa o Programa
-                    Program.StartSim();
-
-                    #region Start ROM
-                    int y = -1, cont = 0, continst = 0;
-                    string[] functions = Program.translator.GetFunctions();
-                    int[] instFunction = Program.translator.GetAmountInstFunction();
-
-                    dataGrid_Adress.ColumnCount = 4;
-                    dataGrid_Adress.ColumnHeadersVisible = true;
-                    DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
-                    dataGrid_Adress.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
-
-                    dataGrid_Adress.Columns[0].Name = "Área";
-                    dataGrid_Adress.Columns[1].Name = "Endereço";
-                    dataGrid_Adress.Columns[2].Name = "Binário";
-                    dataGrid_Adress.Columns[3].Name = "Assembly";
-
-                    #region Start ROM Vector
-                    for (int x = 0; x < 512; x++)
-                    {
-                        y++;
-                        if (x < Program.translator.GetAmountInstProg() + Program.translator.GetAmountInstMain())
-                            dataGrid_Adress.Rows.Add("Área de Programa", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                        else if (cont < Program.translator.GetAmountFunctions())
+                        #region Start ROM Vector
+                        for (int x = 0; x < 512; x++)
                         {
-                            if (x == Program.translator.GetAmountInstMain()) y = 0;
-                            dataGrid_Adress.Rows.Add("Function " + functions[cont], Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                            if (continst < instFunction[cont] - 1) continst++;
-                            else
+                            y++;
+                            if (x < Program.translator.GetAmountInstProg() + Program.translator.GetAmountInstMain())
+                                dataGrid_Adress.Rows.Add("Área de Programa", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            else if (cont < Program.translator.GetAmountFunctions())
                             {
-                                continst = 0;
-                                cont++;
-                                y = -1;
+                                if (x == Program.translator.GetAmountInstMain()) y = 0;
+                                dataGrid_Adress.Rows.Add("Function " + functions[cont], Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                                if (continst < instFunction[cont] - 1) continst++;
+                                else
+                                {
+                                    continst = 0;
+                                    cont++;
+                                    y = -1;
+                                }
                             }
+                            else dataGrid_Adress.Rows.Add("Área de Programa", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
                         }
-                        else dataGrid_Adress.Rows.Add("Área de Programa", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                        y = 0;
+                        for (int x = 512; x < 768; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT0", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        for (int x = 768; x < 1024; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT1", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        for (int x = 1024; x < 1280; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT2", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        for (int x = 1280; x < 1536; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT3", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        for (int x = 1536; x < 1791; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT4", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        for (int x = 1791; x < 2047; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT5", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        #endregion Start ROM Vector
+
+                        #endregion Start ROM
+
+                                #region Start RAM
+                        dataGrid_RAM.ColumnCount = 10;
+                        dataGrid_RAM.ColumnHeadersVisible = true;
+
+                        columnHeaderStyle = new DataGridViewCellStyle();
+                        columnHeaderStyle.BackColor = Color.Beige;
+                        columnHeaderStyle.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        dataGrid_RAM.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
+
+                        dataGrid_RAM.Columns[0].Name = "Área";
+                        dataGrid_RAM.Columns[1].Name = "Endereço";
+                        dataGrid_RAM.Columns[2].Name = "+ 00";
+                        dataGrid_RAM.Columns[3].Name = "+ 01";
+                        dataGrid_RAM.Columns[4].Name = "+ 02";
+                        dataGrid_RAM.Columns[5].Name = "+ 03";
+                        dataGrid_RAM.Columns[6].Name = "+ 04";
+                        dataGrid_RAM.Columns[7].Name = "+ 05";
+                        dataGrid_RAM.Columns[8].Name = "+ 06";
+                        dataGrid_RAM.Columns[9].Name = "+ 07";
+
+                        y = 0;
+                        int[] memoria = Program.ram.GetMemory();
+
+                        #region Start RAM Vector
+                        for (int x = 0; x < 512; x += 8)
+                        {
+                            dataGrid_RAM.Rows.Add("Área de Programa", Convert.ToString(y), memoria[x], memoria[x + 1], memoria[x + 2], memoria[x + 3], memoria[x + 4], memoria[x + 5], memoria[x + 6], memoria[x + 7]);
+                            y += 8;
+                        }
+
+                        #endregion Start RAM Vector
+                        #endregion Start RAM
+
+                                compilation = true;
+                                endProgram = false;
+
+                                // Inicia registradores com 0
+                                r0 = r1 = r2 = r3 = 0;
+                                r0_hex = r1_hex = r2_hex = r3_hex = "0000";
+
+                                // Desativando edição no texto
+                                rchtxt_Editor.Enabled = false;
+
+                                // Ativando botões de execução
+                                bt_execucao.Enabled = true;
+                                bt_passo_passo_prosseguir.Enabled = true;
+                                bt_stop.Enabled = true;
+                                bt_pause.Enabled = true;
+                                bt_voltar_comeco.Enabled = true;
+                                bt_compilar.Enabled = false;
+                                bt_abrir_arquivo.Enabled = false;
+                                bt_New_File.Enabled = false;
+                                btn_LoadVHDLFile.Enabled = true;
+
+                                tab_Editar.BackColor = Color.GreenYellow;
+                                tab_Executar_Texto.SelectedTab = tabExecutar;
+                            }
+                            catch
+                            {
+                                txt_Mensagens.Text += Environment.NewLine + "Erro ao compilar código!\n";
+
+                            }
+
                     }
-                    y = 0;
-                    for (int x = 512; x < 768; x++)
-                    {
-                        dataGrid_Adress.Rows.Add("INT0", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                        y++;
                     }
-                    y = 0;
-                    for (int x = 768; x < 1024; x++)
-                    {
-                        dataGrid_Adress.Rows.Add("INT1", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                        y++;
-                    }
-                    y = 0;
-                    for (int x = 1024; x < 1280; x++)
-                    {
-                        dataGrid_Adress.Rows.Add("INT2", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                        y++;
-                    }
-                    y = 0;
-                    for (int x = 1280; x < 1536; x++)
-                    {
-                        dataGrid_Adress.Rows.Add("INT3", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                        y++;
-                    }
-                    y = 0;
-                    for (int x = 1536; x < 1791; x++)
-                    {
-                        dataGrid_Adress.Rows.Add("INT4", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                        y++;
-                    }
-                    y = 0;
-                    for (int x = 1791; x < 2047; x++)
-                    {
-                        dataGrid_Adress.Rows.Add("INT5", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                        y++;
-                    }
-                    y = 0;
-                    #endregion Start ROM Vector
-
-                    #endregion Start ROM
-
-                    #region Start RAM
-                    dataGrid_RAM.ColumnCount = 10;
-                    dataGrid_RAM.ColumnHeadersVisible = true;
-
-                    columnHeaderStyle = new DataGridViewCellStyle();
-                    columnHeaderStyle.BackColor = Color.Beige;
-                    columnHeaderStyle.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
-                    dataGrid_RAM.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
-
-                    dataGrid_RAM.Columns[0].Name = "Área";
-                    dataGrid_RAM.Columns[1].Name = "Endereço";
-                    dataGrid_RAM.Columns[2].Name = "+ 00";
-                    dataGrid_RAM.Columns[3].Name = "+ 01";
-                    dataGrid_RAM.Columns[4].Name = "+ 02";
-                    dataGrid_RAM.Columns[5].Name = "+ 03";
-                    dataGrid_RAM.Columns[6].Name = "+ 04";
-                    dataGrid_RAM.Columns[7].Name = "+ 05";
-                    dataGrid_RAM.Columns[8].Name = "+ 06";
-                    dataGrid_RAM.Columns[9].Name = "+ 07";
-
-                    y = 0;
-                    int[] memoria = Program.ram.GetMemory();
-
-                    #region Start RAM Vector
-                    for (int x = 0; x < 512; x += 8)
-                    {
-                        dataGrid_RAM.Rows.Add("Área de Programa", Convert.ToString(y), memoria[x], memoria[x + 1], memoria[x + 2], memoria[x + 3], memoria[x + 4], memoria[x + 5], memoria[x + 6], memoria[x + 7]);
-                        y += 8;
-                    }
-
-                    #endregion Start RAM Vector
-                    #endregion Start RAM
-
-                    compilation = true;
-                    endProgram = false;
-
-                    // Inicia registradores com 0
-                    r0 = r1 = r2 = r3 = 0;
-                    r0_hex = r1_hex = r2_hex = r3_hex = "0000";
-
-                    // Ativando botões de execução
-                    bt_execucao.Enabled = true;
-                    bt_passo_passo_prosseguir.Enabled = true;
-                    bt_stop.Enabled = true;
-                    bt_pause.Enabled = true;
-                    bt_voltar_comeco.Enabled = true;
-                    bt_compilar.Enabled = false;
-                    bt_abrir_arquivo.Enabled = false;
-                    bt_New_File.Enabled = false;
-                    btn_LoadVHDLFile.Enabled = true;
-
-                    tab_Editar.BackColor = Color.GreenYellow;
-                    tab_Executar_Texto.SelectedTab = tabExecutar;
+                    catch { MessageBox.Show("Erro ao criar Arquivo"); }
                 }
             }
             else
             {
-                //try
-                //{
+                try
+                {
 
                     instructionLine = txt_editar.Text;
                     //Escrevendo no arquivo
@@ -1228,8 +1240,8 @@ namespace uPD
                     string newtab = "tab_" + fileName;
 
                     // Após salvar tenta compilar
-                    //try
-                    //{
+                    try
+                    {
                         // Salvando no Programa
                         Program.Translate(txt_editar.Text, fileName);
                         if (Program.error != "")
@@ -1237,147 +1249,151 @@ namespace uPD
                             MessageBox.Show(Program.error, "Erro", MessageBoxButtons.OK);
                             return;
                         }
-                    //}
-                    //catch
-                    //{
-                        //txt_Mensagens.Text += Environment.NewLine + "Erro ao compilar código!\n";
+                        // Inicializa o Programa
+                        Program.StartSim();
 
-                    //}
-                //}
-                //catch { MessageBox.Show("Erro ao criar Arquivo"); }
+                        #region Start ROM
+                        int y = -1, cont = 0, continst = 0;
+                        string[] functions = Program.translator.GetFunctions();
+                        int[] instFunction = Program.translator.GetAmountInstFunction();
 
-                // Inicializa o Programa
-                Program.StartSim();
+                        dataGrid_Adress.ColumnCount = 4;
+                        dataGrid_Adress.ColumnHeadersVisible = true;
+                        DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
+                        dataGrid_Adress.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
 
-                #region Start ROM
-                int y = -1, cont = 0, continst = 0;
-                string[] functions = Program.translator.GetFunctions();
-                int[] instFunction = Program.translator.GetAmountInstFunction();
+                        dataGrid_Adress.Columns[0].Name = "Área";
+                        dataGrid_Adress.Columns[1].Name = "Endereço";
+                        dataGrid_Adress.Columns[2].Name = "Binário";
+                        dataGrid_Adress.Columns[3].Name = "Assembly";
 
-                dataGrid_Adress.ColumnCount = 4;
-                dataGrid_Adress.ColumnHeadersVisible = true;
-                DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
-                dataGrid_Adress.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
-
-                dataGrid_Adress.Columns[0].Name = "Área";
-                dataGrid_Adress.Columns[1].Name = "Endereço";
-                dataGrid_Adress.Columns[2].Name = "Binário";
-                dataGrid_Adress.Columns[3].Name = "Assembly";
-
-                #region Start ROM Vector
-                for (int x = 0; x < 512; x++)
-                {
-                    y++;
-                    if (x < Program.translator.GetAmountInstProg() + Program.translator.GetAmountInstMain())
-                        dataGrid_Adress.Rows.Add("Área de Programa", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                    else if (cont < Program.translator.GetAmountFunctions())
-                    {
-                        if (x == Program.translator.GetAmountInstMain()) y = 0;
-                        dataGrid_Adress.Rows.Add("Function " + functions[cont], Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                        if (continst < instFunction[cont] - 1) continst++;
-                        else
+                        #region Start ROM Vector
+                        for (int x = 0; x < 512; x++)
                         {
-                            continst = 0;
-                            cont++;
-                            y = -1;
+                            y++;
+                            if (x < Program.translator.GetAmountInstProg() + Program.translator.GetAmountInstMain())
+                                dataGrid_Adress.Rows.Add("Área de Programa", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            else if (cont < Program.translator.GetAmountFunctions())
+                            {
+                                if (x == Program.translator.GetAmountInstMain()) y = 0;
+                                dataGrid_Adress.Rows.Add("Function " + functions[cont], Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                                if (continst < instFunction[cont] - 1) continst++;
+                                else
+                                {
+                                    continst = 0;
+                                    cont++;
+                                    y = -1;
+                                }
+                            }
+                            else dataGrid_Adress.Rows.Add("Área de Programa", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
                         }
+                        y = 0;
+                        for (int x = 512; x < 768; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT0", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        for (int x = 768; x < 1024; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT1", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        for (int x = 1024; x < 1280; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT2", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        for (int x = 1280; x < 1536; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT3", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        for (int x = 1536; x < 1791; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT4", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        for (int x = 1791; x < 2047; x++)
+                        {
+                            dataGrid_Adress.Rows.Add("INT5", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                            y++;
+                        }
+                        y = 0;
+                        #endregion Start ROM Vector
+
+                        #endregion Start ROM
+
+                        #region Start RAM
+                        dataGrid_RAM.ColumnCount = 10;
+                        dataGrid_RAM.ColumnHeadersVisible = true;
+
+                        columnHeaderStyle = new DataGridViewCellStyle();
+                        columnHeaderStyle.BackColor = Color.Beige;
+                        columnHeaderStyle.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        dataGrid_RAM.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
+
+                        dataGrid_RAM.Columns[0].Name = "Área";
+                        dataGrid_RAM.Columns[1].Name = "Endereço";
+                        dataGrid_RAM.Columns[2].Name = "+ 00";
+                        dataGrid_RAM.Columns[3].Name = "+ 01";
+                        dataGrid_RAM.Columns[4].Name = "+ 02";
+                        dataGrid_RAM.Columns[5].Name = "+ 03";
+                        dataGrid_RAM.Columns[6].Name = "+ 04";
+                        dataGrid_RAM.Columns[7].Name = "+ 05";
+                        dataGrid_RAM.Columns[8].Name = "+ 06";
+                        dataGrid_RAM.Columns[9].Name = "+ 07";
+
+                        y = 0;
+                        int[] memoria = Program.ram.GetMemory();
+
+                        #region Start RAM Vector
+                        for (int x = 0; x < 512; x += 8)
+                        {
+                            dataGrid_RAM.Rows.Add("Área de Programa", Convert.ToString(y), memoria[x], memoria[x + 1], memoria[x + 2], memoria[x + 3], memoria[x + 4], memoria[x + 5], memoria[x + 6], memoria[x + 7]);
+                            y += 8;
+                        }
+
+                        #endregion Start RAM Vector
+                        #endregion Start RAM
+
+                        compilation = true;
+                        endProgram = false;
+
+                        // Inicia registradores com 0
+                        r0 = r1 = r2 = r3 = 0;
+                        r0_hex = r1_hex = r2_hex = r3_hex = "0000";
+
+                        // Desativando edição no texto
+                        rchtxt_Editor.Enabled = false;
+
+                        // Ativando botões de execução
+                        bt_execucao.Enabled = true;
+                        bt_passo_passo_prosseguir.Enabled = true;
+                        bt_stop.Enabled = true;
+                        bt_pause.Enabled = true;
+                        bt_voltar_comeco.Enabled = true;
+                        bt_compilar.Enabled = false;
+                        bt_abrir_arquivo.Enabled = false;
+                        bt_New_File.Enabled = false;
+                        btn_LoadVHDLFile.Enabled = true;
+
+                        tab_Editar.BackColor = Color.GreenYellow;
+                        tab_Executar_Texto.SelectedTab = tabExecutar;
                     }
-                    else dataGrid_Adress.Rows.Add("Área de Programa", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
+                    catch
+                    {
+                        txt_Mensagens.Text += Environment.NewLine + "Erro ao compilar código!\n";
+
+                    }
                 }
-                y = 0;
-                for (int x = 512; x < 768; x++)
-                {
-                    dataGrid_Adress.Rows.Add("INT0", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                    y++;
-                }
-                y = 0;
-                for (int x = 768; x < 1024; x++)
-                {
-                    dataGrid_Adress.Rows.Add("INT1", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                    y++;
-                }
-                y = 0;
-                for (int x = 1024; x < 1280; x++)
-                {
-                    dataGrid_Adress.Rows.Add("INT2", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                    y++;
-                }
-                y = 0;
-                for (int x = 1280; x < 1536; x++)
-                {
-                    dataGrid_Adress.Rows.Add("INT3", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                    y++;
-                }
-                y = 0;
-                for (int x = 1536; x < 1791; x++)
-                {
-                    dataGrid_Adress.Rows.Add("INT4", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                    y++;
-                }
-                y = 0;
-                for (int x = 1791; x < 2047; x++)
-                {
-                    dataGrid_Adress.Rows.Add("INT5", Convert.ToString(y), Program.binProgram[x], Program.assemblyProgram[x]);
-                    y++;
-                }
-                y = 0;
-                #endregion Start ROM Vector
+                catch { MessageBox.Show("Erro ao criar Arquivo"); }
 
-                #endregion Start ROM
-
-                #region Start RAM
-                dataGrid_RAM.ColumnCount = 10;
-                dataGrid_RAM.ColumnHeadersVisible = true;
-
-                columnHeaderStyle = new DataGridViewCellStyle();
-                columnHeaderStyle.BackColor = Color.Beige;
-                columnHeaderStyle.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
-                dataGrid_RAM.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
-
-                dataGrid_RAM.Columns[0].Name = "Área";
-                dataGrid_RAM.Columns[1].Name = "Endereço";
-                dataGrid_RAM.Columns[2].Name = "+ 00";
-                dataGrid_RAM.Columns[3].Name = "+ 01";
-                dataGrid_RAM.Columns[4].Name = "+ 02";
-                dataGrid_RAM.Columns[5].Name = "+ 03";
-                dataGrid_RAM.Columns[6].Name = "+ 04";
-                dataGrid_RAM.Columns[7].Name = "+ 05";
-                dataGrid_RAM.Columns[8].Name = "+ 06";
-                dataGrid_RAM.Columns[9].Name = "+ 07";
-
-                y = 0;
-                int[] memoria = Program.ram.GetMemory();
-
-                #region Start RAM Vector
-                for (int x = 0; x < 512; x += 8)
-                {
-                    dataGrid_RAM.Rows.Add("Área de Programa", Convert.ToString(y), memoria[x], memoria[x + 1], memoria[x + 2], memoria[x + 3], memoria[x + 4], memoria[x + 5], memoria[x + 6], memoria[x + 7]);
-                    y += 8;
-                }
-
-                #endregion Start RAM Vector
-                #endregion Start RAM
-
-                compilation = true;
-                endProgram = false;
-
-                // Inicia registradores com 0
-                r0 = r1 = r2 = r3 = 0;
-                r0_hex = r1_hex = r2_hex = r3_hex = "0000";
-
-                // Ativando botões de execução
-                bt_execucao.Enabled = true;
-                bt_passo_passo_prosseguir.Enabled = true;
-                bt_stop.Enabled = true;
-                bt_pause.Enabled = true;
-                bt_voltar_comeco.Enabled = true;
-                bt_compilar.Enabled = false;
-                bt_abrir_arquivo.Enabled = false;
-                bt_New_File.Enabled = false;
-                btn_LoadVHDLFile.Enabled = true;
-
-                tab_Editar.BackColor = Color.GreenYellow;
-                tab_Executar_Texto.SelectedTab = tabExecutar;
+                
             }
 
             #region Color Text
