@@ -235,7 +235,15 @@ namespace uPD
                     writeEnableBCO = false; writeEnableRAM = false; writeEnableIO = false;
 
                     // Enable
-                    enableReadIO = false; enablePC = true; enableJmp = true; enableROM = false; enableRAM = false; enablePush = false; enablePop = false; enableRet = false;
+                    enableReadIO = false; enablePC = true; enableROM = false; enableRAM = false; enablePush = false; enablePop = false; enableRet = false;
+                    if(Program.BinToInt(Convert.ToInt32(currentInstruction.Substring(5, 2))) == 0)
+                    {
+                        enableJmp = true;
+                    }
+                    else
+                    {
+                        enableJmp = false;
+                    }
                     break;
                 // CMP
                 case "10100":

@@ -210,7 +210,8 @@ namespace uPD
         // Instrução JZ
         public static void JZ()
         {
-
+            ula.SetRs1(bco.GetRegister(Convert.ToUInt32(BinToInt(Convert.ToInt32(currentInstruction.Substring(5, 2))))));
+            ula.Operation(selectULA);
             // Program Counter
             return;
         }
@@ -419,70 +420,41 @@ namespace uPD
                         switch (interruption)
                         {
                             case 0:
-                                if(imed >= 512 && imed < 768)
-                                {
-                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                }
-                                else
-                                {
-                                    error = "Endereço de salto inválido!";
-                                }
+                                currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 512;
                                 break;
                             case 1:
-                                if (imed >= 768 && imed < 1024)
-                                {
-                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                }
-                                else
-                                {
-                                    error = "Endereço de salto inválido!";
-                                }
+                                currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 768;
                                 break;
                             case 2:
-                                if (imed >= 1024 && imed < 1280)
-                                {
-                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                }
-                                else
-                                {
-                                    error = "Endereço de salto inválido!";
-                                }
+                                currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1024;
                                 break;
                             case 3:
-                                if (imed >= 1280 && imed < 1536)
-                                {
-                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                }
-                                else
-                                {
-                                    error = "Endereço de salto inválido!";
-                                }
+                                currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1280;
                                 break;
                             case 4:
-                                if (imed >= 1536 && imed < 1792)
-                                {
-                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                }
-                                else
-                                {
-                                    error = "Endereço de salto inválido!";
-                                }
+                                currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1536;
                                 break;
                             case 5:
-                                if (imed >= 1792 && imed < 2048)
-                                {
-                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                }
-                                else
-                                {
-                                    error = "Endereço de salto inválido!";
-                                }
+                                currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1792;
                                 break;
                         }
                     }
                     else
                     {
-                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));   // Salta para o endereço
+                        if(currentAddress > translator.GetAmountInstMain())
+                        {
+                            int contFun = translator.GetAmountInstMain();
+                            for (uint i = 0; i < translator.GetAmountFunctions(); i++)
+                            {
+                                if (currentAddress <= (contFun + translator.GetAmountInstFunction()[i]))
+                                {
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + contFun;   // Salta para o endereço
+                                }
+                                contFun += translator.GetAmountInstFunction()[i];
+                            }
+                        }
+                        else
+                            currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));   // Salta para o endereço
                     }
                     break;
                 // JZ
@@ -497,69 +469,42 @@ namespace uPD
                             switch (interruption)
                             {
                                 case 0:
-                                    if (imed >= 512 && imed < 768)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 512;
                                     break;
                                 case 1:
-                                    if (imed >= 768 && imed < 1024)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 768;
                                     break;
                                 case 2:
-                                    if (imed >= 1024 && imed < 1280)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1024;
                                     break;
                                 case 3:
-                                    if (imed >= 1280 && imed < 1536)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1280;
                                     break;
                                 case 4:
-                                    if (imed >= 1536 && imed < 1792)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1536;
                                     break;
                                 case 5:
-                                    if (imed >= 1792 && imed < 2048)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1792;
                                     break;
                             }
                         }
                         else
-                            currentAddress = imed;                                      // Se o registrador for 0, salta
+                        {
+                            if (currentAddress > translator.GetAmountInstMain())
+                            {
+                                int contFun = translator.GetAmountInstMain();
+                                for (uint i = 0; i < translator.GetAmountFunctions(); i++)
+                                {
+                                    if (currentAddress <= (contFun + translator.GetAmountInstFunction()[i]))
+                                    {
+                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + contFun;   // Salta para o endereço
+                                    }
+                                    contFun += translator.GetAmountInstFunction()[i];
+                                }
+                            }
+                            else
+                                currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));   // Salta para o endereço
+                        }
                     }
                     else
                     {
@@ -577,69 +522,42 @@ namespace uPD
                             switch (interruption)
                             {
                                 case 0:
-                                    if (imed >= 512 && imed < 768)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 512;
                                     break;
                                 case 1:
-                                    if (imed >= 768 && imed < 1024)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 768;
                                     break;
                                 case 2:
-                                    if (imed >= 1024 && imed < 1280)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1024;
                                     break;
                                 case 3:
-                                    if (imed >= 1280 && imed < 1536)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1280;
                                     break;
                                 case 4:
-                                    if (imed >= 1536 && imed < 1792)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1536;
                                     break;
                                 case 5:
-                                    if (imed >= 1792 && imed < 2048)
-                                    {
-                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));                       // Salta para o endereço
-                                    }
-                                    else
-                                    {
-                                        error = "Endereço de salto inválido!";
-                                    }
+                                    currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + 1792;
                                     break;
                             }
                         }
                         else
-                            currentAddress = imed;                                          // Se a comparação anterior resultar em 1, salta
+                        {
+                            if (currentAddress > translator.GetAmountInstMain())
+                            {
+                                int contFun = translator.GetAmountInstMain();
+                                for (uint i = 0; i < translator.GetAmountFunctions(); i++)
+                                {
+                                    if (currentAddress <= (contFun + translator.GetAmountInstFunction()[i]))
+                                    {
+                                        currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + contFun;   // Salta para o endereço
+                                    }
+                                    contFun += translator.GetAmountInstFunction()[i];
+                                }
+                            }
+                            else
+                                currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9)));   // Salta para o endereço
+                        }
                     }
                     else currentAddress += 1;
                     break;

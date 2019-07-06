@@ -893,7 +893,7 @@ namespace uPD
             }
 
             // Verifica se o programa chegou ao fim
-            if ((Program.currentAddress == Program.translator.GetAmountInstMain() + Program.translator.GetAmountInstProg()) && previousinstruction.Substring(0, 5) != "01111")
+            if (Program.currentAddress == (Program.translator.GetAmountInstMain() + Program.translator.GetAmountInstProg()) && previousinstruction.Substring(0, 5) != "01111" && previousinstruction.Substring(0, 5) != "00110" && previousinstruction.Substring(0, 5) != "01001" && previousinstruction.Substring(0, 5) != "01010")
             {
                 #region Last Execute
                 Program.StepByStep();                                       // Execução passo a passo
