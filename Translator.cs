@@ -195,11 +195,11 @@ namespace uPD
             for (int i = 0; i < div_text.Length; i++)
             {
                 // Determina as posições do vetor de código assembly correspondentes ao início e ao fim da main
-                if (div_text[i].Contains("BEGIN"))
+                if (div_text[i]== "BEGIN")
                 {
                     first[currentFunction] = i + 1;
                 }
-                if (div_text[i].Contains("END"))
+                if (div_text[i] == "END")
                 {
                     last[currentFunction] = i - 1;
                 }
@@ -211,7 +211,7 @@ namespace uPD
                     currentFunction = 1;
                     first[currentFunction] = i + 1;
                 }
-                if (div_text[i].Contains("RETI") && currentFunction == 1)
+                if (div_text[i] == "RETI" && currentFunction == 1)
                 {
                     last[currentFunction] = i;
                 }
@@ -223,7 +223,7 @@ namespace uPD
                     currentFunction = 2;
                     first[currentFunction] = i + 1;
                 }
-                if (div_text[i].Contains("RETI") && currentFunction == 2)
+                if (div_text[i] == "RETI" && currentFunction == 2)
                 {
                     last[currentFunction] = i;
                 }
@@ -236,7 +236,7 @@ namespace uPD
                     first[currentFunction] = i + 1;
                 }
 
-                if (div_text[i].Contains("RETI") && currentFunction == 3)
+                if (div_text[i] == "RETI" && currentFunction == 3)
                     last[currentFunction] = i;
 
                 // Determina as posições do vetor de código assembly correspondentes ao início e ao fim da Int3
@@ -246,7 +246,7 @@ namespace uPD
                     currentFunction = 4;
                     first[currentFunction] = i + 1;
                 }
-                if (div_text[i].Contains("RETI") && currentFunction == 4)
+                if (div_text[i] == "RETI" && currentFunction == 4)
                     last[currentFunction] = i;
 
                 // Determina as posições do vetor de código assembly correspondentes ao início e ao fim da Int4
@@ -256,7 +256,7 @@ namespace uPD
                     currentFunction = 5;
                     first[currentFunction] = i + 1;
                 }
-                if (div_text[i].Contains("RETI") && currentFunction == 5)
+                if (div_text[i] == "RETI" && currentFunction == 5)
                     last[currentFunction] = i;
 
                 // Determina as posições do vetor de código assembly correspondentes ao início e ao fim da Int5
@@ -266,7 +266,7 @@ namespace uPD
                     currentFunction = 6;
                     first[currentFunction] = i + 1;
                 }
-                if (div_text[i].Contains("RETI") && currentFunction == 6)
+                if (div_text[i] == "RETI" && currentFunction == 6)
                     last[currentFunction] = i;
 
                 if (countFunctions != 0)
@@ -276,7 +276,7 @@ namespace uPD
                     {
                         currentCall = wordCall[k];
                     }
-                    if (div_text[i].Contains("RET") && currentCall == wordCall[k])
+                    if (div_text[i] == "RET" && currentCall == wordCall[k])
                     {
                         last[8 + k] = i;
                         k++;
