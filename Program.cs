@@ -410,7 +410,8 @@ namespace uPD
         #region Program Counter
         public static void ProgramCounter()
         {
-            switch(currentInstruction.Substring(0, 5))
+            uint i = 0;
+            switch (currentInstruction.Substring(0, 5))
             {
                 // JI
                 case "00110":
@@ -443,14 +444,16 @@ namespace uPD
                     {
                         if(currentAddress > translator.GetAmountInstMain())
                         {
-                            int contFun = translator.GetAmountInstMain();
-                            for (uint i = 0; i < translator.GetAmountFunctions(); i++)
+                            int contFun = translator.GetAmountInstMain() + 1;
+                            while(i < translator.GetAmountFunctions())
                             {
                                 if (currentAddress <= (contFun + translator.GetAmountInstFunction()[i]))
                                 {
                                     currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + contFun;   // Salta para o endereço
+                                    break;
                                 }
-                                contFun += translator.GetAmountInstFunction()[i];
+                                contFun = contFun + translator.GetAmountInstFunction()[i] + 1;
+                                i++;
                             }
                         }
                         else
@@ -492,14 +495,16 @@ namespace uPD
                         {
                             if (currentAddress > translator.GetAmountInstMain())
                             {
-                                int contFun = translator.GetAmountInstMain();
-                                for (uint i = 0; i < translator.GetAmountFunctions(); i++)
+                                int contFun = translator.GetAmountInstMain() + 1;
+                                while (i < translator.GetAmountFunctions())
                                 {
                                     if (currentAddress <= (contFun + translator.GetAmountInstFunction()[i]))
                                     {
                                         currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + contFun;   // Salta para o endereço
+                                        break;
                                     }
-                                    contFun += translator.GetAmountInstFunction()[i];
+                                    contFun = contFun + translator.GetAmountInstFunction()[i] + 1;
+                                    i++;
                                 }
                             }
                             else
@@ -546,14 +551,16 @@ namespace uPD
                         {
                             if (currentAddress > translator.GetAmountInstMain())
                             {
-                                int contFun = translator.GetAmountInstMain();
-                                for (uint i = 0; i < translator.GetAmountFunctions(); i++)
+                                int contFun = translator.GetAmountInstMain() + 1;
+                                while (i < translator.GetAmountFunctions())
                                 {
                                     if (currentAddress <= (contFun + translator.GetAmountInstFunction()[i]))
                                     {
                                         currentAddress = BinToInt(Convert.ToInt32(currentInstruction.Substring(7, 9))) + contFun;   // Salta para o endereço
+                                        break;
                                     }
-                                    contFun += translator.GetAmountInstFunction()[i];
+                                    contFun = contFun + translator.GetAmountInstFunction()[i] + 1;
+                                    i++;
                                 }
                             }
                             else
@@ -561,6 +568,7 @@ namespace uPD
                         }
                     }
                     else currentAddress += 1;
+                    compare = false;
                     break;
                 // CALL
                 case "01111":
