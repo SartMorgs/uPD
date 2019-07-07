@@ -537,7 +537,7 @@ namespace uPD
                             txt_bin[8 + i][j++] = "00011";
                             address[8 + i][currentAddress++] = div_text[k];
                             countInstFunct[i]++;
-                            instructionNoOrder[numInstructions++] = "ADD" + " " + div_text[k + 1] + " " + div_text[k + 2] + " " + div_text[k + 3];
+                            instructionNoOrder[numInstructions++] = "SUB" + " " + div_text[k + 1] + " " + div_text[k + 2] + " " + div_text[k + 3];
                             break;
                         case "OUT":
                             txt_bin[8 + i][j++] = "00100";
