@@ -1217,6 +1217,27 @@ namespace uPD
 
                                 tab_Editar.BackColor = Color.GreenYellow;
                                 tab_Executar_Texto.SelectedTab = tabExecutar;
+
+                                #region Create new file ROM
+                                int lineStop, cnt = 0; ;
+                                string dir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);                    // Pega o caminho do diretório do executável
+
+                                for (uint i = 0; i < oldRom.Length; i++)
+                                {
+                                    if (oldRom[i].Contains("ROM("))
+                                    {
+                                        while (cnt < 2047)
+                                        {
+                                            newRom[i + cnt] = "ROM(" + cnt + ") <= \"" + Program.binProgram[cnt] + "\";";
+                                            cnt++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        newRom[i + cnt] = oldRom[i];
+                                    }
+                                }
+                                #endregion Create new file ROM
                             }
                             catch
                             {
@@ -1384,6 +1405,27 @@ namespace uPD
 
                         tab_Editar.BackColor = Color.GreenYellow;
                         tab_Executar_Texto.SelectedTab = tabExecutar;
+
+                        #region Create new file ROM
+                        int lineStop, cnt = 0; ;
+                        string dir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);                    // Pega o caminho do diretório do executável
+
+                        for (uint i = 0; i < oldRom.Length; i++)
+                        {
+                            if (oldRom[i].Contains("ROM("))
+                            {
+                                while (cnt < 2047)
+                                {
+                                    newRom[i + cnt] = "ROM(" + cnt + ") <= \"" + Program.binProgram[cnt] + "\";";
+                                    cnt++;
+                                }
+                            }
+                            else
+                            {
+                                newRom[i + cnt] = oldRom[i];
+                            }
+                        }
+                        #endregion Create new file ROM
                     }
                     catch
                     {
