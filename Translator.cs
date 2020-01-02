@@ -43,6 +43,18 @@ namespace uPD
         private static string[][] address;                                      // Vetor com os endereços 
         private static string[] inst;                                           // Vetor dos comandos assembly                                 
 
+        public Translator()
+        {
+            address = null;
+            wordCall = null;
+            inst = null;
+            div_text = null;
+            txt_bin = null;
+            assemblyInstruction = null;
+            instruction = null;
+            instructionNoOrder = null;
+        }
+
         #region Gets and Sets
         // Retorna a quantidade de instruções da interrupção solicitada
         public int GetAmountInstInt(uint interruption)
