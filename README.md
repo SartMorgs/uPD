@@ -17,7 +17,7 @@ O μPD surgiu como uma ferramenta para ajudar no ensino de Arquitetura de Comput
 ### Intuito
 O objetivo sempre foi contribuir com o aprendizado dos alunos, englobando em um mesmo processador a possibilidade de aprendizado de várias áreas da computação em conjunto.
 ### Equipe
-Quem projetou a arquitetura do processador, bem como boa parte do código em VHDL foi o [Marcelo Daniel Berejuck](linkedin.com/in/marcelo-daniel-berejuck-0b923064). A [Morgana Sartor](linkedin.com/in/morgana-sartor) foi quem ajudou no desenvolvimento do código VHDL e testes, e foi uma das programadoras do software de simulação. A [Thaynara Mitie](linkedin.com/in/thaynara-mitie) foi uma das programadoras do software e responsável por seus testes de funcionamento.
+Quem projetou a arquitetura do processador, bem como boa parte do código em VHDL foi o [Marcelo Daniel Berejuck](https://linkedin.com/in/marcelo-daniel-berejuck-0b923064). A [Morgana Sartor](https://linkedin.com/in/morgana-sartor) foi quem ajudou no desenvolvimento do código VHDL e testes, e foi uma das programadoras do software de simulação. A [Thaynara Mitie](https://linkedin.com/in/thaynara-mitie) foi uma das programadoras do software e responsável por seus testes de funcionamento.
 
 <!-- ABOUT THE PROCESSOR -->
 ## Sobre o Processador
