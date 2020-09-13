@@ -1,15 +1,15 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [Sobre o Projeto](#about-the-project)
-  * [Intuito](#objective)
-  * [Equipe](#team)
-* [Sobre o Processador](#about-processpr)
-  * [Formato de Instrução](#instruction-format)
-  * [Como foi Desenvolvido](#development-processor)
-* [Como Usar](#how-to-use)
-* [Como Contribuir](#how-to-contribute)
-* [Roadmap de Melhorias](#roadmap)
+* [Sobre o Projeto](#sobre-o-projeto)
+  * [Intuito](#intuito)
+  * [Equipe](#time)
+* [Sobre o Processador](#sobre-o-processador)
+  * [Formato de Instrução](#formato-de-instrução)
+  * [Como foi Desenvolvido](#como-foi-desenvolvido)
+* [Como Usar](#como-usar)
+* [Como Contribuir](#como-contribuir)
+* [Roadmap de Melhorias](#roadmap-de-melhorias)
    
 <!-- ABOUT THE PROJECT -->
 ## Sobre o Projeto
