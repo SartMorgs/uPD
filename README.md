@@ -1,5 +1,5 @@
 <!-- TABLE OF CONTENTS -->
-## Tabela de Conteúdo
+# Tabela de Conteúdo
 
 * [Sobre o Projeto](#sobre-o-projeto)
   * [Intuito](#intuito)
@@ -12,6 +12,8 @@
 * [Como Contribuir](#como-contribuir)
 * [Roadmap de Melhorias](#roadmap-de-melhorias)
    
+***  
+
 <!-- ABOUT THE PROJECT -->
 ## Sobre o Projeto
 O μPD surgiu como uma ferramenta para ajudar no ensino de Arquitetura de Computadores, sendo um processador monociclo cujo pode ter todas as suas instruções simuladas visualmente através de um software de simulação. O projeto foi expandido para uma IDE onde era possível gerar um programa no assemvbly do μPD, compilar e executar, além de gerar o binário do programa desenvolvido. Também foi acrescentado uma ferramenta de geração do "esqueleto" do seu código VHDL (o qual ele foi desenvolvido) para uso em um kit educacional de FPGA.
@@ -19,6 +21,8 @@ O μPD surgiu como uma ferramenta para ajudar no ensino de Arquitetura de Comput
 O objetivo sempre foi contribuir com o aprendizado dos alunos, englobando em um mesmo processador a possibilidade de aprendizado de várias áreas da computação em conjunto.
 ### Equipe
 Quem projetou a arquitetura do processador, bem como boa parte do código em VHDL foi o [Marcelo Daniel Berejuck](https://linkedin.com/in/marcelo-daniel-berejuck-0b923064). A [Morgana Sartor](https://linkedin.com/in/morgana-sartor) foi quem ajudou no desenvolvimento do código VHDL e testes, e foi uma das programadoras do software de simulação. A [Thaynara Mitie](https://linkedin.com/in/thaynara-mitie) foi uma das programadoras do software e responsável por seus testes de funcionamento.
+
+***
 
 <!-- ABOUT THE PROCESSOR -->
 ## Sobre o Processador
@@ -62,16 +66,22 @@ As instruções do processador possuem dois seis tipos de formatos, conforme mos
 
 ### Como foi Desenvolvido
 
+***
+
 <!-- ABOUT SOFTWARE -->
 ## Sobre o Software
+
+***
 
 <!-- HOW TO USE -->
 ## Como Usar
 
+***
 
 <!-- HOW TO CONTRIBUTE -->
 ## Como Contribuir
 
+***
 
 <!-- ROADMAP -->
 ## Roadmap de Melhorias
