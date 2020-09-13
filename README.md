@@ -23,6 +23,17 @@ Quem projetou a arquitetura do processador, bem como boa parte do código em VHD
 <!-- ABOUT THE PROCESSOR -->
 ## Sobre o Processador
 O μPD utiliza uma arquitetura baseada na arquitetura RISC (Reduced Instruction-Set Computer), o que significa que todas as operações são realizadas com o uso dos registradores. A arquitetura RISC é muitas vezes chamada de “arquitetura Load/Store”. O processador μPD possui um Banco de Registradores com quatro registradores de uso geral (R0, R1, R2 e R3) que podem ser utilizados pelo usuário sem nenhuma restrição.
+
+O procesador μPD é dividido em dois caminhos lógicos, denominados de Caminho de Controle e Caminho de Dados. O caminho de controle é responsável por ler as instruções de
+máquina armazenadas em uma memória do tipo ROM (Read Only Memory), externa ao processador, e controlar o fluxo de execução das tarefas no caminho de dados. Seus principais componentes internos são a unidade de CONTROLE e uma memória tipo LIFO (Last in, First Out), usada para salvar os registradores quando é executada uma chamada de subrotina (instrução CALL e RET).
+
+O caminho de dados é composto de um Banco de registradores (com quatro registradores), uma Unidade Lógica e Aritmética (ULA), uma memória tipo RAM (Random Access Memory), além
+de registradores que fazem interface com pinos de I/O (pinos da porta de entrada e saída de dados do processador). É possível conectar na porta I/O diversos dispositivos, que são comandados pelos sinais de endereços da porta I/O. Assim, é possível conectar até 512 dispositivos diferentes nesta
+porta. 
+
+A memória RAM interna tem capacidade para armazenar até 0,5 KWords ou 1KByte. Esse também é o tamanho máximo que um programa poder ter e ser armazenado na memória ROM.
+O processador μPD permite o uso de até seis (06) interrupções externas, programáveis. A interrupção de maior prioridade é a INT(0) e a de menor, INT(5). A cada interrupção gerada, o processador faz uma CALL para um endereço específico na memória ROM
+
 ### Formato de Instrução
 As instruções do processador possuem dois seis tipos de formatos, conforme mostra a Figura abaixo. Operações que envolvem três registradores utilizam o formato mostrado na Figura (a), operações que envolvem apenas um registrador destino e outro de entrada estão representadas na Figura (b), operações apenas com os dois registradores de entrada estão na Figura (c), e as operações apenas com registrador de destino estão representadas na Figura (d). Também existem operações que não envolvem registradores, elas estão representadas nas figuras (e) e (f). Abaixo estão descritas as instruções.
 | Mnemônico | Opcode (binário) | Opcode (hexadecimal) | Descrição |
