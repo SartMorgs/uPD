@@ -1,5 +1,5 @@
 <!-- TABLE OF CONTENTS -->
-## Table of Contents
+## Tabela de Conteúdo
 
 * [Sobre o Projeto](#sobre-o-projeto)
   * [Intuito](#intuito)
