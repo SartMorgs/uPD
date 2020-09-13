@@ -7,6 +7,7 @@
 * [Sobre o Processador](#sobre-o-processador)
   * [Formato de Instrução](#formato-de-instrução)
   * [Como foi Desenvolvido](#como-foi-desenvolvido)
+* [Sobre o Software](#sobre-o-software)
 * [Como Usar](#como-usar)
 * [Como Contribuir](#como-contribuir)
 * [Roadmap de Melhorias](#roadmap-de-melhorias)
@@ -31,8 +32,27 @@ As instruções do processador possuem dois seis tipos de formatos, conforme mos
 | ADD       | 00010            | 02                   | Soma o conteúdo de dois registradores e armazena o resultado emum terceiro registrador.|
 | SUB       | 00011            | 03                   | Subtrai o conteúdo de dois registradores e armazena o resultado emum terceiro registrador.|
 | OUT       | 00100            | 04                   | Escreve o valor contido em um registrador (R0, R1, R2 ou R3) nos pinos de I/O.|
+| IN        | 00101            | 05                   | Lê o valor contido na porta de I/O em um dos registradores (R0, R1, R2 ou R3).|
+| JI        | 00110            | 06                   | Salto (jump) incondicional. Salta para o endereço contido na instrução (bits de 0 a 8).|
+| LD        | 00111            | 07                   | Carrega conteúdo armazenado na memória RAM (endereço nos bits 0 a 8) em um dos registradores (R0, R1, R2 ou R3).|
+| STO       | 01000            | 08                   | Armazena conteúdo de um registrador (R0, R1, R2 ou R3) em uma posição de memória RAM (endereço nos bits 0 a 8).|
+| JZ        | 01001            | 09                   | Salto condicional (jump) se o conteúdo de um registrador (R0, R1, R2 ou R3) for igual a 0 (zero).|
+| JE        | 01010            | 0A                   | Salto condicional (jump) se o conteúdo de um registrador (R0, R1, R2 ou R3) for igual a 1 (um). Usar CMP antes.|
+| AND       | 01011            | 0B                   | Executa E lógico entre o conteúdo de dois registradores, armazenando o resultado em um terceiro registrador.|
+| OR        | 01100            | 0C                   | Executa OU lógico entre o conteúdo de dois registradores, armazenando o resultado em um terceiro registrador.|
+| XOR       | 01101            | 0D                   | Executa OU EXCLUSIVO lógico entre o conteúdo de dois registradores, armazenando o resultado em um terceiro registrador.|
+| NOT       | 01110            | 0E                   | Executa NÃO lógico no conteúdo de um registrador, armazenando o resultado em um segundo registrador.|
+| CALL      | 01111            | 0F                   | Chamada de subrotina (função). Endereço de salto está na instrução (bits de 0 a 8).|
+| RETI      | 10000            | 10                   | Retorno de interrupção. Volta par o ponto onde estava sendoexecutado o programa antes da ocorrência da interrupção.|
+| SETR      | 10001            | 11                   | Configura registradores internos do processador. No momento existeapenas o INT, que habilita interrupções externas.|
+| STOP      | 10010            | 12                   | Para a execução do programa por tempo indeterminado.|
+| RET       | 10011            | 13                   | Retorno de subrotina (função). Retorna para o endereço de onde foi chamada a última subrotina (CALL).|
+| CMP       | 10100            | 14                   | Compara o conteúdo armazenado em dois registradores quaisquer (R0, R1, R2 ou R3).|
+
 ### Como foi Desenvolvido
 
+<!-- ABOUT SOFTWARE -->
+## Sobre o Software
 
 <!-- HOW TO USE -->
 ## Como Usar
