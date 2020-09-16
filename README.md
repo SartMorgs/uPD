@@ -65,17 +65,45 @@ As instruções do processador possuem dois seis tipos de formatos, conforme mos
 | CMP       | 10100            | 14                   | Compara o conteúdo armazenado em dois registradores quaisquer (R0, R1, R2 ou R3).|
 
 ### Como foi Desenvolvido
-Cada componente interno do processador foi representado como uma classe no software. Tiveram seu funcionamento interno exporto de forma visual os seguintes componentes:
- * Banco de Registradores
- * Memória RAM
- * In/Out
-
-<img src="imagens/tela_editor.png" alt="Logo" width="800" height="500">
+A primeira versão do μPD foi implementada em desktop app, onde cada componente interno do processador foi representado como uma classe no software. A linguagem usada para o desenvolvimento foi C# e foi desenvolvido um tradutor com alguns tratamentos de erros para a transformação do Assembly em binário do μPD.
 
 ***
 
 <!-- ABOUT SOFTWARE -->
 ## Sobre o Software
+O software possui 3 visões diferentes, que estão expostas em abas.
+ * Editor: Onde o usuário pode desenvolver o código
+ * Execução por texto: Onde o usuário consegue acompanhar o funcionamento linha a linha do seu código
+ * Execução por blocos: Onde o usuário consegue acompanhar o fluxo dos dados em cada componente do processador.
+
+<p align="center">
+   <img src="imagens/tela_editor.png" alt="Logo" width="800" height="500">
+   <br>
+   Editor de código
+   <br>
+   <br>
+   <img src="imagens/tela_exec_texto.png" alt="Logo" width="800" height="500">
+   <br>
+   Execução por texto
+   <br>
+   <br>
+ <img src="imagens/tela_exec_bloco.png" alt="Logo" width="800" height="500">
+   <br>
+   Execução por bloco
+</p>
+
+Tiveram seu funcionamento interno exporto de forma visual os seguintes componentes:
+ * Banco de Registradores
+ * Memória RAM
+ * In/Out
+ * Interrupções
+
+Também há o recurso que possibilita visualizar e gerar o esqueleto do código VHDL dos componentes
+<p>
+   <img src="imagens/tela_vhdltela_vhdl.png" alt="Logo" width="800" height="500">
+   <br>
+   Execução por bloco
+</p>
 
 ***
 
@@ -91,3 +119,4 @@ Cada componente interno do processador foi representado como uma classe no softw
 
 <!-- ROADMAP -->
 ## Roadmap de Melhorias
+A partir desta primeira versão do software ducacional pretende-se torná-lo uma webapp e disponibilizá-la no como uma imagem docker, de forma que qualquer pessoa possa facilmente fazer uso da mesma apenas baixando e abrindo em seu browser. Também há uma necessidade de aprimoramento do tradutor para um compilador de fato, possibilitando a visualização de métricas de desempenho e fornecendo erros mais claros e objetivos ao usuário.
