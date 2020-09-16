@@ -65,7 +65,11 @@ As instruções do processador possuem dois seis tipos de formatos, conforme mos
 | CMP       | 10100            | 14                   | Compara o conteúdo armazenado em dois registradores quaisquer (R0, R1, R2 ou R3).|
 
 ### Como foi Desenvolvido
-
+Cada componente interno do processador foi representado como uma classe no software. Tiveram seu funcionamento interno exporto de forma visual os seguintes componentes:
+ * Banco de Registradores
+ * Memória RAM
+ * In/Out
+ 
 ***
 
 <!-- ABOUT SOFTWARE -->
