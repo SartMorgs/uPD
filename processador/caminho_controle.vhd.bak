@@ -1,0 +1,129 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity CAMINHO_CONTROLE is
+	 Generic (
+				p_DATA_SIZE	: INTEGER := 16
+	 );
+    Port ( 
+				i_CLK		: in  STD_LOGIC;
+				i_RST		: in  STD_LOGIC;
+				
+				i_DATA_ROM	: in  STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);	  
+				i_DATA_ULA	: in  STD_LOGIC;
+				o_SEL_ULA		: out STD_LOGIC_VECTOR(2 DOWNTO 0);	
+				o_SEL_IMED	: out STD_LOGIC_VECTOR(1 DOWNTO 0);	
+				o_WR_BCO      	: out STD_LOGIC;
+				o_WR_RAM      	: out STD_LOGIC;
+				o_WR_IO       	: out STD_LOGIC;
+				o_RD_IO		: out STD_LOGIC;
+				o_ADD_ROM		: out STD_LOGIC_VECTOR((p_DATA_SIZE-7) DOWNTO 0);
+				o_DATA		: out STD_LOGIC_VECTOR(11 DOWNTO 0)
+	 );
+end CAMINHO_CONTROLE;
+
+architecture Behavioral of CAMINHO_CONTROLE is
+-----------------------------------------------------------------
+
+	component TABELA_CONTROLE is
+	    Generic (
+					p_DATA_SIZE	: INTEGER := 16
+	    );	
+	    Port ( 
+					i_DATA   		: in  STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);	  
+					i_DATA_ULA	: in  STD_LOGIC;
+					o_SEL_ULA		: out STD_LOGIC_VECTOR(2 DOWNTO 0);	
+					o_SEL_IMED	: out STD_LOGIC_VECTOR(1 DOWNTO 0);	
+					o_WR_BCO      	: out STD_LOGIC;
+					o_WR_RAM      	: out STD_LOGIC;
+					o_WR_IO       	: out STD_LOGIC;
+					o_RD_IO		: out STD_LOGIC;
+					o_SEL_JMP		: out STD_LOGIC;
+					o_WR_PC		: out STD_LOGIC
+		 );
+	end component;
+
+
+	COMPONENT REGISTRADOR is
+		 Generic (
+					p_DATA_SIZE		: INTEGER := 16
+		 );
+		 Port ( 
+					i_CLK   	: in  STD_LOGIC;
+					i_RST   	: in  STD_LOGIC;
+					i_DATA	: in  STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);	  
+					o_DATA	: out STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);	
+					i_WR   	: in  STD_LOGIC	
+		 );
+	end COMPONENT;	
+
+	signal w_NEXT_ADD	: STD_LOGIC_VECTOR((p_DATA_SIZE-7) DOWNTO 0);	
+	signal w_PLUS_ONE	: STD_LOGIC_VECTOR((p_DATA_SIZE-7) DOWNTO 0);	
+	signal w_ADD_ROM	: STD_LOGIC_VECTOR((p_DATA_SIZE-7) DOWNTO 0);
+	signal w_WR_PC  	: STD_LOGIC;
+	signal w_SEL_JMP  	: STD_LOGIC;
+	signal w_DATA   	: STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);	
+	
+-----------------------------------------------------------------	
+begin
+
+	o_ADD_ROM <= w_ADD_ROM when(w_SEL_JMP = '0') else w_DATA((p_DATA_SIZE-7) downto 0);
+	
+	PC : REGISTRADOR 
+		 Generic Map(
+						p_DATA_SIZE   => (p_DATA_SIZE-6)
+		 )
+		 Port Map ( 
+						i_CLK   	=> i_CLK,
+						i_RST   	=> i_RST,
+						i_DATA	=> w_NEXT_ADD,
+						o_DATA	=> w_ADD_ROM,
+						i_WR   	=> w_WR_PC   
+	);
+	
+	w_PLUS_ONE <= w_ADD_ROM + 1;
+	
+	w_NEXT_ADD <= w_PLUS_ONE when(w_SEL_JMP = '0') else w_DATA((p_DATA_SIZE-7) downto 0);
+	
+	
+	IR : REGISTRADOR 
+		 Generic Map(
+						p_DATA_SIZE   => p_DATA_SIZE
+		 )
+		 Port Map ( 
+						i_CLK   	=> i_CLK,
+						i_RST   	=> i_RST,
+						i_DATA	=> i_DATA_ROM,
+						o_DATA	=> w_DATA,
+						i_WR   	=> '1'
+	);
+	
+	o_DATA <= w_DATA(11 DOWNTO 0);
+	
+	
+	--==============================================================
+	-- LÓGICA DE CONTROLE 
+	--==============================================================	
+	U_TAB : TABELA_CONTROLE 
+	    Generic Map (
+					p_DATA_SIZE	=> p_DATA_SIZE
+	    )	
+	    Port Map ( 
+					i_DATA   		=> w_DATA,
+					i_DATA_ULA	=> i_DATA_ULA,
+					o_SEL_ULA		=> o_SEL_ULA,
+					o_SEL_IMED	=> o_SEL_IMED,
+					o_WR_BCO      	=> o_WR_BCO,
+					o_WR_RAM      	=> o_WR_RAM,
+					o_WR_IO       	=> o_WR_IO,
+					o_RD_IO		=> o_RD_IO,
+					o_SEL_JMP		=> w_SEL_JMP,
+					o_WR_PC		=> w_WR_PC
+		);
+	
+		
+-----------------------------------------------------------------	
+end behavioral;

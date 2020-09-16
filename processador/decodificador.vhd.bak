@@ -1,0 +1,98 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity TABELA_CONTROLE is
+    Generic (
+				p_DATA_SIZE	: INTEGER := 16
+    );	
+    Port ( 
+				i_DATA   		: in  STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);	  
+				i_DATA_ULA	: in  STD_LOGIC;
+				o_SEL_ULA		: out STD_LOGIC_VECTOR(2 DOWNTO 0);	
+				o_SEL_IMED	: out STD_LOGIC_VECTOR(1 DOWNTO 0);	
+				o_WR_BCO      	: out STD_LOGIC;
+				o_WR_RAM      	: out STD_LOGIC;
+				o_WR_IO       	: out STD_LOGIC;
+				o_RD_IO		: out STD_LOGIC;
+				o_SEL_JMP		: out STD_LOGIC;
+				o_WR_PC		: out STD_LOGIC
+	 );
+end TABELA_CONTROLE;
+
+architecture Behavioral of TABELA_CONTROLE is
+-----------------------------------------------------------------
+	
+-----------------------------------------------------------------	
+begin
+-- (NOT i_DATA((p_DATA_SIZE-1))) AND 
+	--==============================================================
+	-- LÓGICA DE CONTROLE 
+	--==============================================================
+		o_SEL_ULA(0)  <= ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND      i_DATA((p_DATA_SIZE-5)))  OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)))  OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-4))) AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND      i_DATA((p_DATA_SIZE-3))  AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5))));  
+							  
+
+		o_SEL_ULA(1)  <= ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)))  OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND      i_DATA((p_DATA_SIZE-5)))  OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-4))) AND (NOT i_DATA((p_DATA_SIZE-5))));
+							  
+							  
+		o_SEL_ULA(2)  <= ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)))  OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)))  OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND      i_DATA((p_DATA_SIZE-3))  AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5))));
+							  
+	---------------------------------------------------------------	
+		o_SEL_IMED(0) <= ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)) ) OR		  
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND (NOT i_DATA((p_DATA_SIZE-3))) AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-4))) AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND      i_DATA((p_DATA_SIZE-3))  AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5))));
+
+		o_SEL_IMED(1) <= ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND      i_DATA((p_DATA_SIZE-3))  AND      i_DATA((p_DATA_SIZE-4))  AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND (NOT i_DATA((p_DATA_SIZE-3))) AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-4))) AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND       i_DATA((p_DATA_SIZE-2)) AND      i_DATA((p_DATA_SIZE-3))  AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5))));
+						  
+	---------------------------------------------------------------	
+		o_WR_BCO	    <= ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND (NOT i_DATA((p_DATA_SIZE-3))) AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND      i_DATA((p_DATA_SIZE-4))  AND      i_DATA((p_DATA_SIZE-5)) ) OR						 
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-4))  AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-4))) AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND      i_DATA((p_DATA_SIZE-3))  AND      i_DATA((p_DATA_SIZE-4))  AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND      i_DATA((p_DATA_SIZE-4))  AND      i_DATA((p_DATA_SIZE-5)) ) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND (NOT i_DATA((p_DATA_SIZE-4))) AND      i_DATA((p_DATA_SIZE-5)) );
+						     
+	---------------------------------------------------------------
+		o_WR_RAM	    <= ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND (NOT i_DATA((p_DATA_SIZE-3))) AND (NOT i_DATA((p_DATA_SIZE-5))));
+	---------------------------------------------------------------
+		o_WR_IO	    <= ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND (NOT i_DATA((p_DATA_SIZE-5))));		
+	---------------------------------------------------------------
+		o_RD_IO	    <= ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-5)) );		
+	---------------------------------------------------------------
+		o_SEL_JMP	    <= ((NOT i_DATA((p_DATA_SIZE-1))) AND (NOT i_DATA((p_DATA_SIZE-2))) AND      i_DATA((p_DATA_SIZE-3))  AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-5)))) OR
+		                 ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-5))  AND i_DATA_ULA) OR
+					  ((NOT i_DATA((p_DATA_SIZE-1))) AND      i_DATA((p_DATA_SIZE-2))  AND (NOT i_DATA((p_DATA_SIZE-3))) AND      i_DATA((p_DATA_SIZE-3))  AND (NOT i_DATA((p_DATA_SIZE-5))) AND i_DATA_ULA);		
+	---------------------------------------------------------------
+		o_WR_PC <= '0' when(i_DATA((p_DATA_SIZE-1) DOWNTO (p_DATA_SIZE-5)) = x"0") else '1';
+	---------------------------------------------------------------	
+		
+-----------------------------------------------------------------	
+end behavioral;

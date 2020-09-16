@@ -1,0 +1,47 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_arith.ALL;
+use IEEE.STD_LOGIC_unsigned.ALL;
+
+entity LIFO is
+	 Generic(
+	 		p_DATA_WIDTH   : INTEGER := 16;        -- Número de bits dos dados. 
+	 		p_ADD_WIDTH    : INTEGER := 6         -- Número de bits dos endereços. 
+	 );
+    Port ( 
+		  i_CLK 		: in  STD_LOGIC;
+		  i_RST   	: in  STD_LOGIC;
+		  i_WR 		: in  STD_LOGIC;
+		  i_ADDR  	: in  STD_LOGIC_VECTOR ((p_ADD_WIDTH-1) downto 0);
+		  i_DATA  	: in  STD_LOGIC_VECTOR ((p_DATA_WIDTH-1) downto 0);
+		  o_DATA  	: out STD_LOGIC_VECTOR ((p_DATA_WIDTH-1) downto 0)
+	 );
+end LIFO;
+
+architecture Behavioral of LIFO is
+
+	COMPONENT MEMORIA is
+		 Generic(
+				p_DATA_WIDTH   : INTEGER := 16;        -- Número de bits dos dados. 
+				p_ADD_WIDTH    : INTEGER := 6         -- Número de bits dos endereços. 
+		 );
+	    Port ( 
+			  i_CLK 		: in  STD_LOGIC;
+			  i_RST   	: in  STD_LOGIC;
+			  i_WR 		: in  STD_LOGIC;
+			  i_ADDR  	: in  STD_LOGIC_VECTOR ((p_ADD_WIDTH-1) downto 0);
+			  i_DATA  	: in  STD_LOGIC_VECTOR ((p_DATA_WIDTH-1) downto 0);
+			  o_DATA  	: out STD_LOGIC_VECTOR ((p_DATA_WIDTH-1) downto 0)
+		 );
+	end COMP;
+
+	
+----------------------------------------------------------------------------------------	
+begin
+
+
+
+
+		
+		
+end Behavioral;

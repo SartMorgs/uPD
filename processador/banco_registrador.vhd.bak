@@ -1,0 +1,128 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity BANCO_REGISTRADOR is
+    Generic (
+					p_DATA_SIZE		: INTEGER := 16
+	 );
+    Port ( 
+				i_CLK   		: in  STD_LOGIC;
+				i_RST   		: in  STD_LOGIC;
+				
+				i_ADD_S1		: in  STD_LOGIC_VECTOR(1 DOWNTO 0);	  
+				i_ADD_S2		: in  STD_LOGIC_VECTOR(1 DOWNTO 0);	
+				
+				i_WR  		: in  STD_LOGIC;
+				i_DATA		: in  STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);	
+			   i_ADD_DST 	: in  STD_LOGIC_VECTOR(1 DOWNTO 0);
+				o_RS1 		: out STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);	
+				o_RS2 		: out STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0)
+	 );
+end BANCO_REGISTRADOR;
+
+architecture Behavioral of BANCO_REGISTRADOR is
+
+	COMPONENT REGISTRADOR is
+		 Generic (
+					p_DATA_SIZE		: INTEGER := 16
+		 );
+		 Port ( 
+					i_CLK   	: in  STD_LOGIC;
+					i_RST   	: in  STD_LOGIC;
+					i_DATA	: in  STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);	  
+					o_DATA	: out STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);	
+					i_WR   	: in  STD_LOGIC	
+		 );
+	end COMPONENT;	
+	
+	
+	signal	w_DOUT01	: STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);
+	signal	w_DOUT02	: STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);
+
+	signal	w_DOUT03	: STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);
+	signal	w_DOUT04	: STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);
+	
+	signal   w_WR1		: STD_LOGIC;
+	signal   w_WR2		: STD_LOGIC;
+	signal   w_WR3		: STD_LOGIC;
+	signal   w_WR4		: STD_LOGIC;
+	
+	
+begin
+
+	U01:  REGISTRADOR 
+    Port map( 
+					i_CLK   	=> i_CLK,
+					i_RST   	=> i_RST,
+					i_DATA	=> i_DATA,
+					o_DATA	=> w_DOUT01,
+					i_WR   	=> w_WR1
+	 );
+
+	 U02:  REGISTRADOR 
+    Port map( 
+					i_CLK   	=> i_CLK,
+					i_RST   	=> i_RST,
+					i_DATA	=> i_DATA,
+					o_DATA	=> w_DOUT02,
+					i_WR   	=> w_WR2
+	 );
+	 
+	U03:  REGISTRADOR 
+    Port map( 
+					i_CLK   	=> i_CLK,
+					i_RST   	=> i_RST,
+					i_DATA	=> i_DATA,
+					o_DATA	=> w_DOUT03,
+					i_WR   	=> w_WR3
+	 );
+
+	 U04:  REGISTRADOR 
+    Port map( 
+					i_CLK   	=> i_CLK,
+					i_RST   	=> i_RST,
+					i_DATA	=> i_DATA,
+					o_DATA	=> w_DOUT04,
+					i_WR   	=> w_WR4
+	 );	 
+
+	 
+	 
+	 MUX_S1 : PROCESS(i_ADD_S1, w_DOUT01, w_DOUT02, w_DOUT03, w_DOUT04)
+	 BEGIN
+			IF (i_ADD_S1 = "00") THEN
+				o_RS1 <= w_DOUT01;
+			ELSIF (i_ADD_S1 = "01") THEN
+				o_RS1 <= w_DOUT02;
+			ELSIF (i_ADD_S1 = "10") THEN
+				o_RS1 <= w_DOUT03;
+			ELSE
+				o_RS1 <= w_DOUT04;
+			END IF;
+	 END PROCESS MUX_S1;
+
+	 
+	 MUX_S2 : PROCESS(i_ADD_S2, w_DOUT01, w_DOUT02, w_DOUT03, w_DOUT04)
+	 BEGIN
+			IF (i_ADD_S2 = "00") THEN
+				o_RS2 <= w_DOUT01;
+			ELSIF (i_ADD_S2 = "01") THEN
+				o_RS2 <= w_DOUT02;
+			ELSIF (i_ADD_S2 = "10") THEN
+				o_RS2 <= w_DOUT03;
+			ELSE
+				o_RS2 <= w_DOUT04;
+			END IF;
+	 END PROCESS MUX_S2;
+	 
+	 w_WR1 <= (NOT i_ADD_DST(0)) AND (NOT i_ADD_DST(1)) AND i_WR; 
+	 w_WR2 <=      i_ADD_DST(0)  AND (NOT i_ADD_DST(1)) AND i_WR; 
+ 	 w_WR3 <= (NOT i_ADD_DST(0)) AND      i_ADD_DST(1)  AND i_WR; 
+ 	 w_WR4 <=      i_ADD_DST(0)  AND      i_ADD_DST(1)  AND i_WR; 
+  
+	 
+end behavioral;
+	

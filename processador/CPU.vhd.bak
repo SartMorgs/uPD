@@ -1,0 +1,108 @@
+Library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity CPU is
+    Generic (
+				p_ADD_ROM_SIZE	: INTEGER := 6;
+				p_DATA_SIZE	: INTEGER := 16
+    );
+    Port ( 
+				i_CLK		: in  STD_LOGIC;
+				i_RST		: in  STD_LOGIC;			
+
+				i_DATA_IO		: in  STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);
+				o_DATA_IO		: out STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);
+				o_ADDR_IO      : out STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0)				
+    );
+end CPU;
+
+architecture Behavioral of CPU is
+-----------------------------------------------------------------
+
+	COMPONENT PROCESSADOR is
+	Generic (
+				p_DATA_SIZE	: INTEGER := 16
+	 );
+      Port ( 
+				i_CLK		: in  STD_LOGIC;
+				i_RST		: in  STD_LOGIC;
+				
+				i_DATA_ROM	: in  STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);	  
+				o_ADD_ROM		: out STD_LOGIC_VECTOR((p_DATA_SIZE-7) DOWNTO 0);
+				
+				i_DATA_IO		: in  STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);
+				o_DATA_IO		: out STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);
+				o_ADDR_IO      : out STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0)
+	 );
+	end COMPONENT;
+	
+	
+	COMPONENT ROM is
+		Generic (
+				--
+				-- Size of the address bus.
+				--
+				p_ADD_ROM_SIZE	: INTEGER := 6;
+				p_DATA_SIZE	: INTEGER := 16
+	    );
+		 Port ( 
+				i_ADDRESS    	: in STD_LOGIC_VECTOR ((p_ADD_ROM_SIZE-1) downto 0);
+				o_DOUT       	: out STD_LOGIC_VECTOR ((p_DATA_SIZE-1) downto 0)
+		);
+	end COMPONENT;
+
+	
+	signal 		w_ADD_ROM			: STD_LOGIC_VECTOR((p_ADD_ROM_SIZE-1) DOWNTO 0);
+	signal		w_DATA_ROM		: STD_LOGIC_VECTOR((p_DATA_SIZE-1) DOWNTO 0);
+	signal 		w_RST			: STD_LOGIC;
+	signal         w_ADD_PROCESSOR	: STD_LOGIC_VECTOR((p_DATA_SIZE-7) DOWNTO 0);
+	
+-----------------------------------------------------------------	
+begin
+
+	--
+	-- Sinal de RESET externo é invertido para uso no kit DE0.
+	--
+--	w_RST <= not i_RST;
+	w_RST <= i_RST;
+	
+	w_ADD_ROM <= w_ADD_PROCESSOR((p_ADD_ROM_SIZE-1) DOWNTO 0);
+	
+	
+	--
+	-- Instancialização do processador.
+	--
+	PROC: PROCESSADOR 
+	 Generic Map(
+					p_DATA_SIZE   => p_DATA_SIZE
+	 )
+      Port Map ( 
+					i_CLK		=> i_CLK,
+					i_RST		=> w_RST,
+					
+					i_DATA_ROM	=> w_DATA_ROM,
+					o_ADD_ROM		=> w_ADD_PROCESSOR,
+					
+					i_DATA_IO		=> i_DATA_IO,
+					o_DATA_IO		=> o_DATA_IO,
+					o_ADDR_IO		=> o_ADDR_IO
+	 );
+
+	 --
+	 -- Instancialização da memória de programa.
+	 --
+	 MEM: ROM 
+		Generic Map (
+--					p_ADD_ROM_SIZE	=> (p_DATA_SIZE-6),
+					p_ADD_ROM_SIZE	=> 6,
+					p_DATA_SIZE	=> p_DATA_SIZE
+	    )
+		 Port Map ( 
+					i_ADDRESS    => w_ADD_ROM,
+					o_DOUT       => w_DATA_ROM
+		); 
+
+end behavioral;
