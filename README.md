@@ -69,7 +69,9 @@ Cada componente interno do processador foi representado como uma classe no softw
  * Banco de Registradores
  * Memória RAM
  * In/Out
- 
+
+<img src="imagens/tela_editor.png" alt="Logo" width="700" height="500">
+
 ***
 
 <!-- ABOUT SOFTWARE -->
