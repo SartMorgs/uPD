@@ -70,7 +70,7 @@ Cada componente interno do processador foi representado como uma classe no softw
  * Memória RAM
  * In/Out
 
-<img src="imagens/tela_editor.png" alt="Logo" width="700" height="500">
+<img src="imagens/tela_editor.png" alt="Logo" width="800" height="500">
 
 ***
 
