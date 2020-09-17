@@ -102,7 +102,7 @@ Também há o recurso que possibilita visualizar e gerar o esqueleto do código 
 <p align="center">
    <img src="imagens/tela_vhdl.png" alt="Logo" width="700" height="500">
    <br>
-   Execução por bloco
+   Esqueleto de código VHDL de um componente
 </p>
 
 ***
