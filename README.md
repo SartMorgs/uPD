@@ -99,8 +99,8 @@ Tiveram seu funcionamento interno exporto de forma visual os seguintes component
  * Interrupções
 
 Também há o recurso que possibilita visualizar e gerar o esqueleto do código VHDL dos componentes
-<p>
-   <img src="imagens/tela_vhdl.png" alt="Logo" width="800" height="500">
+<p align="center">
+   <img src="imagens/tela_vhdl.png" alt="Logo" width="800" height="400">
    <br>
    Execução por bloco
 </p>
