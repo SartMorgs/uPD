@@ -34,7 +34,7 @@ máquina armazenadas em uma memória do tipo ROM (Read Only Memory), externa ao 
 <p align="center">
    <img src="imagens/uPD.png" alt="Logo" width="800" height="500">
    <br>
-   Editor de código
+   Arquitetura do processador
 </p>
 
 O caminho de dados é composto de um Banco de registradores (com quatro registradores), uma Unidade Lógica e Aritmética (ULA), uma memória tipo RAM (Random Access Memory), além
@@ -46,6 +46,13 @@ O processador μPD permite o uso de até seis (06) interrupções externas, prog
 
 ### Formato de Instrução
 As instruções do processador possuem dois seis tipos de formatos, conforme mostra a Figura abaixo. Operações que envolvem três registradores utilizam o formato mostrado na Figura (a), operações que envolvem apenas um registrador destino e outro de entrada estão representadas na Figura (b), operações apenas com os dois registradores de entrada estão na Figura (c), e as operações apenas com registrador de destino estão representadas na Figura (d). Também existem operações que não envolvem registradores, elas estão representadas nas figuras (e) e (f). Abaixo estão descritas as instruções.
+
+<p align="center">
+   <img src="imagens/formato_inst.png" alt="Logo" width="800" height="500">
+   <br>
+   Formato de Instrução
+</p>
+
 | Mnemônico | Opcode (binário) | Opcode (hexadecimal) | Descrição |
 |-----------|------------------|----------------------|-----------|
 | NOP       | 00000            | 00                   | “No operation”. Processador gasta um ciclo de relógio se fazernenhuma operação.|
