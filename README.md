@@ -105,7 +105,7 @@ O software possui 3 visões diferentes, que estão expostas em abas.
    Execução por bloco
 </p>
 
-Tiveram seu funcionamento interno exporto de forma visual os seguintes componentes:
+Tiveram seu funcionamento interno exposto de forma visual os seguintes componentes:
  * Banco de Registradores
  * Memória RAM
  * In/Out
