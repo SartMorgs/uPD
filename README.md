@@ -31,6 +31,12 @@ O μPD utiliza uma arquitetura baseada na arquitetura RISC (Reduced Instruction-
 O procesador μPD é dividido em dois caminhos lógicos, denominados de Caminho de Controle e Caminho de Dados. O caminho de controle é responsável por ler as instruções de
 máquina armazenadas em uma memória do tipo ROM (Read Only Memory), externa ao processador, e controlar o fluxo de execução das tarefas no caminho de dados. Seus principais componentes internos são a unidade de CONTROLE e uma memória tipo LIFO (Last in, First Out), usada para salvar os registradores quando é executada uma chamada de subrotina (instrução CALL e RET).
 
+<p align="center">
+   <img src="imagens/uPD.png" alt="Logo" width="800" height="500">
+   <br>
+   Editor de código
+</p>
+
 O caminho de dados é composto de um Banco de registradores (com quatro registradores), uma Unidade Lógica e Aritmética (ULA), uma memória tipo RAM (Random Access Memory), além
 de registradores que fazem interface com pinos de I/O (pinos da porta de entrada e saída de dados do processador). É possível conectar na porta I/O diversos dispositivos, que são comandados pelos sinais de endereços da porta I/O. Assim, é possível conectar até 512 dispositivos diferentes nesta
 porta. 
