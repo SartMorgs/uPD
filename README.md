@@ -1,5 +1,5 @@
 <!-- TABLE OF CONTENTS -->
-# Tabela de Conteúdo
+### Tabela de Conteúdo
 
 * [Sobre o Projeto](#sobre-o-projeto)
   * [Intuito](#intuito)
@@ -132,4 +132,4 @@ Também há o recurso que possibilita visualizar e gerar o esqueleto do código 
 
 <!-- ROADMAP -->
 ## Roadmap de Melhorias
-A partir desta primeira versão do software ducacional pretende-se torná-lo uma webapp e disponibilizá-la no como uma imagem docker, de forma que qualquer pessoa possa facilmente fazer uso da mesma apenas baixando e abrindo em seu browser. Também há uma necessidade de aprimoramento do tradutor para um compilador de fato, possibilitando a visualização de métricas de desempenho e fornecendo erros mais claros e objetivos ao usuário.
+A partir desta primeira versão do software educacional pretende-se torná-lo uma webapp e disponibilizá-la no como uma imagem docker, de forma que qualquer pessoa possa facilmente fazer uso da mesma apenas baixando e abrindo em seu browser. Também há uma necessidade de aprimoramento do tradutor para um compilador de fato, possibilitando a visualização de métricas de desempenho e fornecendo erros mais claros e objetivos ao usuário.
