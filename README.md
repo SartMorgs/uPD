@@ -127,7 +127,7 @@ Para utilizar o aplicativo basta baixar o arquivo compactado [neste link](https:
 
 <!-- HOW TO CONTRIBUTE -->
 ## Como Contribuir
-
+Para contribuir com este projeto você pode dar um fork, clonar no seu PC, fazer testes, procurar bugs, criar novas funcionalidades e etc. As formas para contribuir são muitas: encontrar bugs no código e na documentação, acrescentar issues, resolver issues (se existirem), deixar uma sugestão (issue) ou traduzi-lo para outro idioma. Sinta-se à vontade para entrar em contato com os desenvolvedores para conversar, sugerir algo ou apontar algum problema.
 ***
 
 <!-- ROADMAP -->
