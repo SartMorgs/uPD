@@ -122,7 +122,7 @@ Também há o recurso que possibilita visualizar e gerar o esqueleto do código 
 
 <!-- HOW TO USE -->
 ## Como Usar
-
+Para utilizar o aplicativo basta baixar o arquivo compactado [neste link](https://drive.google.com/drive/folders/1P6KntcG0_GvvCMvg849g4pwKim3AEdpd?usp=sharing), extraí-lo para uma pasta e instalá-lo clicando duas vezes em "setup.exe" 
 ***
 
 <!-- HOW TO CONTRIBUTE -->
