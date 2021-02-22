@@ -45,7 +45,7 @@ A memória RAM interna tem capacidade para armazenar até 0,5 KWords ou 1KByte. 
 O processador μPD permite o uso de até seis (06) interrupções externas, programáveis. A interrupção de maior prioridade é a INT(0) e a de menor, INT(5). A cada interrupção gerada, o processador faz uma CALL para um endereço específico na memória ROM
 
 ### Formato de Instrução
-As instruções do processador possuem dois seis tipos de formatos, conforme mostra a Figura abaixo. Operações que envolvem três registradores utilizam o formato mostrado na Figura (a), operações que envolvem apenas um registrador destino e outro de entrada estão representadas na Figura (b), operações apenas com os dois registradores de entrada estão na Figura (c), e as operações apenas com registrador de destino estão representadas na Figura (d). Também existem operações que não envolvem registradores, elas estão representadas nas figuras (e) e (f). Abaixo estão descritas as instruções.
+As instruções do processador possuem seis tipos de formatos, conforme mostra a Figura abaixo. Operações que envolvem três registradores utilizam o formato mostrado na Figura (a), operações que envolvem apenas um registrador destino e outro de entrada estão representadas na Figura (b), operações apenas com os dois registradores de entrada estão na Figura (c), e as operações apenas com registrador de destino estão representadas na Figura (d). Também existem operações que não envolvem registradores, elas estão representadas nas figuras (e) e (f). Abaixo estão descritas as instruções.
 
 <p align="center">
    <img src="imagens/formato_inst.png" alt="Logo" width="500" height="400">
